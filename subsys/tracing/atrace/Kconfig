@@ -1,0 +1,12 @@
+# Copyright (c) 2020 Actions Semiconductor Co., Ltd
+# SPDX-License-Identifier: Apache-2.0
+
+if TRACING_ATRACE
+
+config TRACING_ATRACE_SHELL
+	bool "Enable Actions trace shell"
+	depends on TRACING_ATRACE
+	default y
+	help
+	  Enable Actions trace shell for changing trace config dynamiclly.
+endif

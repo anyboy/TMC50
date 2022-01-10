@@ -1,0 +1,13 @@
+obj-y += app_manager.o
+obj-y += app_switcher.o
+obj-$(CONFIG_ESD_MANAGER) += esd_manager.o
+obj-y += msg_manager.o
+obj-y += oem_manager.o
+obj-y += srv_manager.o
+obj-$(CONFIG_SYSTEM_SHELL) += sys_shell.o
+obj-y += sys_monitor.o
+obj-y += sys_event.o
+obj-y += sys_manager.o
+obj-y += sys_power_off.o
+obj-y += sys_wakelock.o
+obj-y += sys_standby.o

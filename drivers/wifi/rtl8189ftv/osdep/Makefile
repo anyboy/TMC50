@@ -1,0 +1,1 @@
+obj-y += zephyr_service.o net_intf.o clib_dep.o zephyr_frame.o

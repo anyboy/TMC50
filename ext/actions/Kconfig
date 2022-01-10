@@ -1,0 +1,126 @@
+#
+# Copyright (c) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menu "Actions sdk"
+
+config ACTIONS_SDK
+	bool
+	prompt "Actions SDK Support"
+	default n
+	select ACTIONS_SDK_PORTING
+	select ACTIONS_COMPONENT_FUNCTION
+	select ACTIONS_LIBRARY
+	select ACTIONS_EXTERNAL_LIBRARY
+	select ACTIONS_UTILS
+	select MEMOYR
+	help
+	  This option enables the Actions SDK FUNCTION.
+
+choice
+	prompt "Actions SDk Function Mode"
+	default ACTIONS_SDK_FULL_MODE
+	depends on ACTIONS_SDK
+	help
+	  Select Memory Manager Funciton to compile.
+
+config ACTIONS_SDK_FULL_MODE
+	bool
+	prompt "Actions SDK Full Function Mode"
+	select SYSTEM
+	select BLUETOOTH
+	select MEDIA
+	select INPUT
+	select AUDIO
+	select DISPLAY
+	select POWER
+	select PROPERTY
+	select PROPERTY_CACHE
+	select STREAM
+	select ESD_MANAGER
+	select SYS_STANDBY
+	#select PLAYTTS
+	#select PLAYTTS_ACT
+	#select PLAY_KEYTONE
+	select ACTS_RING_BUFFER
+	select DVFS
+	select THREAD_TIMER
+	select SYS_LOG
+	select PRINTK
+	select SYSTEM_SHELL
+	select KERNEL_SHELL
+	select INIT_STACKS
+	select THREAD_MONITOR
+	select OBJECT_TRACING
+	select CPU_LOAD_STAT
+	select CPU_LOAD_DEBUG
+	select SECTION_OVERLAY
+	select STACK_MONITOR
+	select THREAD_STACK_INFO
+	select SYS_IRQ_LOCK
+	select SYS_IRQ_LOCK_EXCEPT_BT_CON
+	select XSPI_NOR_AUTO_CHECK_RB
+	select STACK_BACKTRACE
+	select ASSERT
+	select ALARM
+	help
+	  This option enables the Actions SDK Full FUNCTION Mode.
+
+config ACTIONS_SDK_TINY_MODE
+	bool
+	prompt "Actions SDK Tiny Function Mode"
+	select SYSTEM
+	select PROPERTY
+	select INIT_STACKS
+	select THREAD_MONITOR
+	select SYS_IRQ_LOCK
+	select SYS_IRQ_LOCK_EXCEPT_BT_CON
+	select XSPI_NOR_AUTO_CHECK_RB
+	help
+	  This option enables the Actions SDK Tiny FUNCTION mode.
+
+endchoice
+
+config USP
+	bool
+	prompt "actions usp protocol Support"
+	default n
+	help
+	This option enables actions usp protocol Support.
+
+config USP_DUPLEX
+	bool
+	prompt "actions usp protocol with duplex Support"
+	depends on USP
+	default n
+	help
+	This option enables actions usp protocol with duplex Support.
+
+config USP_TEST
+	bool
+	prompt "actions usp test Support"
+	depends on USP
+	default n
+	help
+	This option enables actions usp test Support.
+
+config BT_DONGLE_SERVICE
+	bool
+	prompt "Enable/Disable BT dongle service"
+	depends on USP
+	select STUB_DEV_UART
+	default n
+	help
+	This option is used to enable/disable BT dongle service, which works with FS360 project.
+
+source "ext/actions/component/Kconfig"
+
+source "ext/actions/library/Kconfig"
+
+source "ext/actions/porting/Kconfig"
+
+source "ext/actions/external/Kconfig"
+
+endmenu

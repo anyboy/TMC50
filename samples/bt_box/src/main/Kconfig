@@ -1,0 +1,142 @@
+# Kconfig - ACTIONS primitive options for sdk version 2.0
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+config BT_MAIN_APP
+	bool
+	prompt "Btbox Main App Support"
+	default n
+	help
+	This option enable or disable btbox main app
+
+choice
+	prompt "audio policy for output channel"
+	default AUDIO_OUTPUT_DAC
+	depends on BT_MAIN_APP
+	help
+	  Select audio policy for output channel
+
+config AUDIO_OUTPUT_I2S
+	bool
+	prompt "output to i2s channel"
+	select AUDIO_OUT_I2STX0_SUPPORT
+	select OUTPUT_RESAMPLE
+	help
+	This option select audio output to i2s
+
+
+config AUDIO_OUTPUT_DAC_AND_I2S
+	bool
+	prompt "output to i2s channel"
+	select AUDIO_OUT_I2STX0_SUPPORT
+	select OUTPUT_RESAMPLE
+	help
+	This option select audio output to i2s
+
+config AUDIO_OUTPUT_SPDIF
+	bool
+	prompt "output to spdif channel"
+	select AUDIO_OUT_SPDIFTX_SUPPORT
+	select OUTPUT_RESAMPLE
+	help
+	This option select audio output to spidf tx
+
+config AUDIO_OUTPUT_DAC
+	bool
+	prompt "output to dac channel"
+	depends on BT_MAIN_APP
+	help
+	This option select audio output to dac
+endchoice
+
+config AUDIO_OUT_STEREO_ENABLE
+	bool
+	prompt "output to stereo dac channel"
+	depends on BT_MAIN_APP
+	help
+	This option select audio output to dac
+
+config AUDIO_OUT_LEFT_ONLY
+	bool
+	prompt "output to left dac channel"
+	select RIGHT_CHANNEL_MUTE
+	depends on BT_MAIN_APP
+	help
+	This option select audio output to dac
+
+config AUDIO_OUT_RIGHT_ONLY
+	bool
+	prompt "output to right dac channel"
+	select LEFT_CHANNEL_MUTE
+	depends on BT_MAIN_APP
+	help
+	This option select audio output to dac
+
+config OUTPUT_RESAMPLE
+	bool
+	prompt "allow resample out put rate"
+	select RESAMPLE
+	depends on MEDIA
+	help
+	This option select audio output to dac
+
+config AUDIO_OUT_LEFT_RIGHT_SWAP
+	bool
+	prompt "output swap left/right dac channel"
+	depends on AUDIO_OUT_STEREO_ENABLE
+	default n
+	help
+	This option select audio output swap left/right dac
+
+config TWS_AUDIO_OUT_MODE
+	int
+	prompt "tws audio output mode"
+	default 0
+	help
+	This option select tws audio output mode
+
+if AUDIO_OUT_LEFT_RIGHT_SWAP
+config MEDIA_EFFECT_OUTMODE
+	default 1
+endif
+
+
+config CONTROL_TTS_ENABLE
+	bool
+	prompt "control tts enable"
+	depends on BT_MAIN_APP
+	default n
+	help
+	This option select "control tts enable"
+
+
+config LOW_LATENCY_MODE
+	bool
+	prompt "low latency mode"
+	depends on BT_MAIN_APP
+	select OS_LOW_LATENCY_MODE
+	default n
+	help
+	This option enable low latency mode
+
+config CASCADE
+	bool
+	prompt "cascade mode"
+	default n
+	help
+	This option enable cascade mode
+

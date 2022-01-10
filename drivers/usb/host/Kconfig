@@ -1,0 +1,43 @@
+# Kconfig - USB host configuration options
+
+#
+# Copyright (c) 2016 Actions Corporation.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+if USB_HOST
+
+config USB_HOST_DRIVER
+	bool
+	select USB_HOST_STACK
+	default n
+
+config SYS_LOG_USB_HOST_DRIVER_LEVEL
+	int
+	prompt "USB host driver log level"
+	depends on SYS_LOG
+	default 0
+	help
+	  Sets log level for USB host driver
+
+	  Levels are:
+
+	  - 0 OFF, do not write
+
+	  - 1 ERROR, only write SYS_LOG_ERR
+
+	  - 2 WARNING, write SYS_LOG_WRN in addition to previous level
+
+	  - 3 INFO, write SYS_LOG_INF in addition to previous levels
+
+	  - 4 DEBUG, write SYS_LOG_DBG in addition to previous levels
+
+config USB_AOTG_HCD
+	bool
+	prompt "Actions OTG USB HOST Controller Driver"
+	default n
+	help
+	  Actions OTG USB HOST Controller Driver.
+
+endif # USB_HOST

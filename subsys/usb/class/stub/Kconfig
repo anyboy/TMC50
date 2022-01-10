@@ -1,0 +1,78 @@
+# Kconfig - USB STUB configuration options
+#
+# Copyright (c) 2020 Actions Corp.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config USB_DEVICE_STUB
+	bool
+	prompt "USB STUB Device support"
+	default n
+	help
+	  Enables USB STUB Device support.
+
+if USB_DEVICE_STUB
+
+config USB_STUB_DEVICE_MANUFACTURER
+	string
+	prompt "USB manufacturer name"
+	default "ZEPHYR"
+	help
+	  USB stub device Manufacturer string. MUST be configured by vendor.
+
+config USB_STUB_DEVICE_PRODUCT
+	string
+	prompt "USB product name"
+	default "USB-STUB"
+	help
+	  USB stub device Product string. MUST be configured by vendor.
+
+config USB_STUB_DEVICE_SN
+	string
+	prompt "USB serial number"
+	default "0.01"
+	help
+	  USB stub device SerialNumber string. MUST be configured by vendor.
+
+config STUB_IN_EP_ADDR
+	hex "USB STUB bulk IN endpoint size"
+	default 0x81
+	range 0x81 0x8f
+	help
+	  USB STUB bulk IN endpoint size
+
+config STUB_OUT_EP_ADDR
+	hex "USB STUB bulk OUT endpoint address"
+	default 0x02
+	range 0x01 0x0f
+	help
+	  USB STUB bulk OUT endpoint address
+
+config STUB_EP_MPS
+	int "USB STUB Device full-speed endpoint size"
+	default 64
+	range 8 64
+	help
+	  USB STUB Device Endpoint size
+
+config SYS_LOG_USB_STUB_LEVEL
+	int "USB STUB device class driver log level"
+	depends on SYS_LOG
+	default 0
+	help
+	  Sets log level for USB STUB device class driver
+
+	  Levels are:
+
+	  - 0 OFF, do not write
+
+	  - 1 ERROR, only write SYS_LOG_ERR
+
+	  - 2 WARNING, write SYS_LOG_WRN in addition to previous level
+
+	  - 3 INFO, write SYS_LOG_INF in addition to previous levels
+
+	  - 4 DEBUG, write SYS_LOG_DBG in addition to previous levels
+
+endif # USB_DEVICE_STUB

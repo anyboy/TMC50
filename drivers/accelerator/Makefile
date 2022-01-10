@@ -1,0 +1,1 @@
+obj-$(CONFIG_ACCELERATOR_ACTS_WOODPECKER) += woodpecker/

@@ -1,0 +1,122 @@
+# Kconfig - Actions system manager
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig SYSTEM
+	bool
+	prompt "System"
+	depends on ACTIONS_COMPONENT_FUNCTION
+	select APP_MANAGER
+	select SRV_MANAGER
+	select MSG_MANAGER
+	select MEMORY
+	default y
+	help
+	This option enables actions system manager.
+
+config APP_MANAGER
+	bool
+	prompt "App Manager Support"
+	depends on SYSTEM
+	default n
+	help
+	This option enables actions app manager.
+
+config SRV_MANAGER
+	bool
+	prompt "Server Manager Support"
+	depends on SYSTEM
+	default n
+	help
+	This option enables actions server manager.
+
+config MSG_MANAGER
+	bool
+	prompt "Message Manager Support"
+	depends on SYSTEM
+	default n
+	help
+	This option enables actions message manager.
+
+config ESD_MANAGER
+	bool
+	prompt "Esd Manager Support"
+	depends on SYSTEM
+	default n
+	help
+	This option enables actions esd manager.
+
+config SYS_STANDBY
+	bool
+	prompt "System Standby Support "
+	depends on SYSTEM
+	select SYS_WAKELOCK
+	select PM_CPU_IDLE_LOW_POWER
+	default n
+	help
+	This option enables actions system standby.
+
+config SYS_WAKELOCK
+	bool
+	prompt "System Wake Lock Support "
+	depends on SYSTEM
+	depends on SYS_STANDBY
+	default n
+	help
+	This option enables actions system wake lock.
+
+config AUTO_STANDBY_TIME_SEC
+    int "delay how long (second) to enter standby"
+    depends on SYS_STANDBY
+    default 0
+    help
+    This option set the time to enter standby when system idle
+
+config AUTO_STANDBY_S2_LOWFREQ
+    bool "auto standby enter S2, cpu run in low freq(32KHz)"
+    depends on SYS_STANDBY
+    default n
+    help
+    This option set auto standby enter S2, cpu run in low freq(32KHz)
+
+config AUTO_POWEDOWN_TIME_SEC
+    int "delay how long (second) to auto power down"
+    depends on SYS_STANDBY
+	default 1800
+    help
+    This option set the time to enter auto power down
+
+config AUTO_POWEDOWN_UNCONNECTED
+    bool 
+    prompt "Poweroff When No Device Connected Support"
+	depends on SYSTEM
+    help
+        allow poweroff when no device connected
+
+config AUTO_POWEDOWN_NOPLAYING
+    bool
+    prompt "Poweroff When Not Playing Support"
+	depends on SYSTEM
+    help
+        allow poweroff when not playing   
+
+config MONITOR_PERIOD
+    int "delay how long (second) to monitor running"
+	depends on SYSTEM
+	default 100
+    help
+    This option set the time to monitor running
+
+config SYSTEM_SHELL
+	bool "System Shell Support"
+	depends on SYSTEM
+	default n
+	select CONSOLE_SHELL
+	help
+	  This shell provides to  modify system config.
+
+

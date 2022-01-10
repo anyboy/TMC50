@@ -1,0 +1,82 @@
+#
+# Makefile for the iComm wifi host sw stack.
+#
+
+TOP_DIR = ${ZEPHYR_BASE}
+include $(TOP_DIR)/drivers/wifi/ssv6030p/config.mk
+include $(TOP_DIR)/drivers/wifi/ssv6030p/include.mk
+
+SSV_LIB      := lib_ssv_wifi.a
+
+SSV_LIB_FILE := wifi_lib_pub.a
+SSV_LIB_CORE := wifi_lib_core.a
+
+ifeq ($(CONFIG_USE_ICOMM_LWIP),y)
+SSV_LIB_IPERF:= wifi_lib_iperf3.a
+endif
+
+COMMON_OBJS = 
+COMMON_LIBS =
+
+include $(TOP_DIR)/drivers/wifi/ssv6030p/open.mk
+
+COMMON_OBJS += $(SSV_COBJS)
+#COMMON_LIBS += $(SSV_LIB_DIR)/$(SSV_LIB_FILE)
+
+COMMON_LIBS += $(addprefix $(WIFI_OUTDIR)/,$(SSV_LIB_FILE))
+
+COMMON_OBJS :=$(subst $(SSV_HOST_DIR),.,$(COMMON_OBJS))
+COMMON_DIRS = $(subst $(SSV_HOST_DIR),.,$(SSV_SRC_DIRS))
+
+OUTPUT_OBJS := $(addprefix $(WIFI_OUTDIR)/,$(COMMON_OBJS))
+
+OUTPUT_DEPS:= $(OUTPUT_OBJS:.o=.d)
+
+ALL_OUTDIR := $(WIFI_OUTDIR)
+ALL_OUTDIR += $(addprefix $(WIFI_OUTDIR)/,$(COMMON_DIRS))
+
+vpath %.c $(SSV_HOST_DIR)
+
+.PHONY:all
+ifeq ($(CONFIG_USE_ICOMM_LWIP),y)
+all:$(COMMON_LIBS) $(SSV_LIB_DIR)/$(SSV_LIB_CORE) $(SSV_LIB_DIR)/$(SSV_LIB_IPERF)
+	$(AR) -xv $(SSV_LIB_DIR)/$(SSV_LIB_CORE)
+	$(AR) -xv $(SSV_LIB_DIR)/$(SSV_LIB_IPERF)
+	$(AR) -xv $(COMMON_LIBS)
+	$(AR) -rc $(WIFI_OUTDIR)/$(SSV_LIB) *.o
+	@$(RM) *.o
+else
+all:$(COMMON_LIBS) $(SSV_LIB_DIR)/$(SSV_LIB_CORE)
+	$(AR) -xv $(SSV_LIB_DIR)/$(SSV_LIB_CORE)
+	$(AR) -xv $(COMMON_LIBS)
+	$(AR) -rc $(WIFI_OUTDIR)/$(SSV_LIB) *.o
+	@$(CP) $(WIFI_OUTDIR)/$(SSV_LIB) $(CUSTOMER_OUTPUT)/$(SSV_LIB)
+	@$(RM) *.o
+endif
+
+$(COMMON_LIBS):$(OUTPUT_OBJS)
+	@echo  make $(SSV_LIB_DIR)/$(SSV_LIB_FILE) 
+	@$(AR) rcs $@ $(OUTPUT_OBJS)
+
+$(OUTPUT_OBJS):$(WIFI_OUTDIR)/%.o:%.c
+	@echo compile $(notdir $<)
+	@echo -e "compile $(notdir $<)\r\n" >>output.txt
+	@$(CC) $(CFLAGS) $(SSV_INC_DIR) $(SSV_INC_DIR_EXT) -c $< -o $@ 2>output.txt
+
+
+ifneq "$(MAKECMDGOALS)" "clean"
+sinclude $(OUTPUT_DEPS)
+
+$(WIFI_OUTDIR)/%.d:%.c
+	@test -d $(WIFI_OUTDIR)/$(dir $*) || $(MKDIR) -p $(WIFI_OUTDIR)/$(dir $*)
+	@echo "dep "$(notdir $*).d
+	@set -e;$(CC) -MM $(CFLAGS) $(SSV_INC_DIR) $(SSV_INC_DIR_EXT) $< > $@.temp; \
+	sed 's,\($(notdir $*)\)\.o[ :]*,$(WIFI_OUTDIR)/$(dir $*)\1.o $@ : ,g' < $@.temp > $@;\
+	$(RM) -f $@.temp
+endif
+
+.PHONY:clean
+clean:
+	@$(RM) $(COMMON_LIBS) $(OUTPUT_OBJS) $(OUTPUT_DEPS)
+	@$(RM) $(SSV_LIB_DIR)/$(SSV_LIB)
+	@$(RM) $(WIFI_OUTDIR)

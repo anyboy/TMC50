@@ -1,0 +1,112 @@
+# Kconfig - ACTIONS primitive options for sdk version 2.0
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+config BT_DRV_WOODPECKER_PHOENIX
+    bool
+    prompt "Actions Bluetooth controller driver (Phoenix) for Woodpecker SoC"
+	depends on BT_DRV
+    depends on SOC_SERIES_WOODPECKER || SOC_SERIES_WOODPECKERFPGA
+	select COMPENSATION_ACTS
+    default n
+    help
+    This option enables Actions Bluetooth controller Woodpecker SoC.
+
+config BT_CONTROLER_DEBUG_PRINT
+    bool
+    prompt "Actions controler debug print"
+	depends on BT_DRV
+    default y
+    help
+    This option enables Actions controler debug print
+
+config BT_CONTROLER_DEBUG_GPIO
+    bool
+    prompt "Actions controler debug gpio pin"
+	depends on BT_DRV
+    default n
+    help
+    This option enables Actions controler debug gpio pin
+
+config BT_CONTROLER_MAX_TXPOWER
+    int
+    prompt "Bluetooth Controller Max TX power (unit: 0.1 db)"
+    depends on BT_DRV
+    default 80
+    help
+    This option config Bluetooth Controller Max TX power (unit: 0.1 db)
+
+config BT_HCI_RX_PRINT
+    bool    
+    prompt "Actions Bluetooth hci RX Print"
+	depends on BT_DRV
+    depends on SOC_SERIES_ANDES || SOC_SERIES_ANDESM
+    default n
+    help
+    This option enables Actions Bluetooth controller Andes RX Print
+    
+config BT_HCI_TX_PRINT
+    bool    
+    prompt "Actions Bluetooth hci TX Print"
+	depends on BT_DRV
+    depends on SOC_SERIES_ANDES || SOC_SERIES_ANDESM
+    default n
+    help
+    This option enables Actions Bluetooth controller Andes TX Print   
+
+config BT_CONTROLER_BQB
+    bool    
+    prompt "Actions Bluetooth Controller BQB test"
+	depends on BT_DRV
+    depends on SOC_SERIES_ANDES || SOC_SERIES_ANDESM || SOC_SERIES_WOODPECKER
+    default n
+    help
+    This option enables Actions Bluetooth Controller BQB test   
+
+config BT_CONTROLER_BLE_BQB
+    bool    
+    prompt "Actions Bluetooth Controller BQB ble test"
+    depends on BT_DRV
+    depends on SOC_SERIES_ANDES || SOC_SERIES_ANDESM || SOC_SERIES_WOODPECKER
+    depends on BT_CONTROLER_BQB
+    default n
+    help
+    This option enables Actions Bluetooth Controller ble BQB test
+
+config BT_BQB_UART_PORT
+	int "UART port id for BQB mode, and FCC mode"
+	depends on BT_CONTROLER_BLE_BQB
+	range [0 1]
+	default 1
+	help
+	This option config UART port id for BQB mode, and FCC mode
+
+config BT_CONTROLER_RF_FCC
+    bool    
+    prompt "Actions Bluetooth Controller RF FCC test"
+    depends on SOC_SERIES_WOODPECKER
+    default n
+    help
+    This option enables Actions Bluetooth Controller RF FCC test
+
+config BT_FCC_UART_PORT
+	int "UART port id for FCC mode"
+	depends on BT_CONTROLER_RF_FCC
+	range [0 1]
+	default 1
+	help
+	This option config UART port id for FCC mode

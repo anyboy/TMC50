@@ -1,0 +1,15 @@
+# Kconfig - Actions Bluetooth SoC platform configuration options
+
+#
+# Copyright (c) 2018 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config USE_ROM
+    bool
+    default y
+
+config ROM_TABLE_ENTRY_ADDR
+    int
+    default 656

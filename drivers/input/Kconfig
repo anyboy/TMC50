@@ -1,0 +1,142 @@
+# Kconfig - Input device configuration options
+#
+#
+# Copyright (c) 2017 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig INPUT_DEV
+	bool
+	prompt "Input device drivers"
+	default n
+	help
+	  Enable input device driver configuration
+
+if INPUT_DEV
+config SYS_LOG_INPUT_DEV_LEVEL
+	int
+	prompt "INPUT Device drivers log level"
+	depends on SYS_LOG
+	range 0 4
+	default 0
+	help
+	  Sets log level for INPUT Device driver.
+
+	  Levels are:
+	  - 0 OFF, do not write
+	  - 1 ERROR, only write SYS_LOG_ERR
+	  - 2 WARNING, write SYS_LOG_WRN in addition to previous level
+	  - 3 INFO, write SYS_LOG_INF in addition to previous levels
+	  - 4 DEBUG, write SYS_LOG_DBG in addition to previous levels
+
+config ENCODER_INPUT
+	bool
+	prompt "encoder ec11 device enable"
+	default n
+	help
+		encoder ec11 device enable.
+
+config ENCODER_NAME
+	string "encoder ec11 device name"
+	depends on ENCODER_INPUT
+	default "encoder_ec11"
+	help
+		the name of choosed device.
+
+config INPUT_DEV_ACTS_ADCKEY
+	bool "Actions SoC adc keypad driver"
+	depends on SOC_FAMILY_ACTS
+	default n
+	help
+	  Enable support for Actions SoC adc keypad driver.
+
+config INPUT_DEV_ACTS_ADCKEY_NAME
+	string "Device Name for Actions SoC adc keypad"
+	depends on INPUT_DEV_ACTS_ADCKEY
+	default "adckey"
+	help
+	  Device name for Actions SoC ADC keypad.
+
+config INPUT_DEV_ACTS_ADCKEY_ADC_NAME
+	string "Device Name for Actions SoC adc keypad"
+	depends on INPUT_DEV_ACTS_ADCKEY
+	default "ADC_0"
+	help
+	  ADC device name for Actions SoC ADC keypad.
+
+config INPUT_DEV_ACTS_ADCKEY_ADC_CHAN
+	int "Device Name for Actions SoC adc keypad"
+	depends on INPUT_DEV_ACTS_ADCKEY
+	help
+	  ADC channel number for Actions SoC ADC keypad.
+
+config INPUT_DEV_ACTS_ONOFF_KEY
+	bool "Actions SoC On/Off key driver"
+	depends on SOC_FAMILY_ACTS
+	default n
+	help
+	  Enable support for Actions SoC On/Off key driver.
+
+config INPUT_DEV_ACTS_ONOFF_KEY_NAME
+	string "Device Name for Actions SoC On/Off key keyboard"
+	default "onoff_key"
+	depends on INPUT_DEV_ACTS_ONOFF_KEY
+	help
+	  Device name for Actions SoC On/Off key keyboard.
+
+config INPUT_DEV_ACTS_IRKEY
+	bool "Actions SoC infrared keypad driver"
+	depends on SOC_FAMILY_ACTS
+	default n
+	help
+	  Enable support for Actions SoC infrared keypad driver.
+
+config INPUT_DEV_ACTS_IRKEY_NAME
+	string "Device Name for Actions SoC infrared keypad"
+	depends on INPUT_DEV_ACTS_IRKEY
+	default "irkey"
+	help
+	  Device name for Actions SoC infrared keypad.
+
+config INPUT_DEV_ACTS_IRKEY_POLL_USERCODE
+	bool "Actions SoC infrared keypad driver poll usercode"
+	depends on SOC_FAMILY_ACTS
+	depends on INPUT_DEV_ACTS_IRKEY
+	default n
+	help
+	  Poll the usercode of infrared keypad, if usercode is incorrect,
+	  it will report to the developer.
+
+config INPUT_DEV_ACTS_IRKEY_CORRECT_USERCODE
+	bool "Actions SoC infrared keypad driver correct usercode automatically"
+	depends on SOC_FAMILY_ACTS
+	depends on INPUT_DEV_ACTS_IRKEY
+	depends on INPUT_DEV_ACTS_IRKEY_POLL_USERCODE
+	default n
+	help
+	  Poll the usercode of infrared keypad, if usercode is incorrect,
+	  it will report to the developer and correct usercode automatically.
+
+config INPUT_DEV_ACTS_ADC_SR
+	bool "Actions SoC adc SR(Sliding rheostat) driver"
+	depends on SOC_FAMILY_ACTS
+	default n
+	help
+	  Enable support for Actions SoC adc SR driver.
+
+config INPUT_DEV_ACTS_ADC_SR_NAME
+	string "Device Name for Actions SoC adc keypad"
+	depends on INPUT_DEV_ACTS_ADC_SR
+	default "adcsr_drv"
+	help
+	  Device name for Actions SoC adc SR.
+
+config INPUT_DEV_ACTS_SR_ADC_NAME
+	string "ADC Device Name for Actions SoC adc SR"
+	depends on INPUT_DEV_ACTS_ADC_SR
+	default "ADC_0"
+	help
+	  ADC device name for Actions SoC ADC SR.
+
+endif # INPUT_DEV

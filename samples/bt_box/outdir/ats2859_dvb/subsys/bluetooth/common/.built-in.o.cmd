@@ -1,0 +1,1 @@
+cmd_subsys/bluetooth/common/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o subsys/bluetooth/common/built-in.o subsys/bluetooth/common/dummy.o subsys/bluetooth/common/log.o subsys/bluetooth/common/rpa.o 

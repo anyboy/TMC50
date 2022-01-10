@@ -1,0 +1,2 @@
+config SOC_ATS2859
+	bool "ats2859"

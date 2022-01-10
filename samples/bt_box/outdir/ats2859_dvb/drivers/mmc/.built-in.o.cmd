@@ -1,0 +1,1 @@
+cmd_drivers/mmc/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/mmc/built-in.o drivers/mmc/mmc_ops.o drivers/mmc/sd.o drivers/mmc/mmc_acts.o 

@@ -1,0 +1,21 @@
+menu "Memory Heap Options"
+
+config POOL_PAGE_SHIFT
+        int
+        prompt "page size shift in page pools, options:9 ~ 12"
+        default 11
+        range 9 12
+        help
+        This option set page size in page pools
+
+config  MEMORY_ANALYSIS
+        bool
+        prompt "enable statistic heap alloc information"
+        default n
+        help
+        This option enables statistic heap alloc information
+endmenu
+
+
+
+

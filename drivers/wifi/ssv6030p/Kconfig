@@ -1,0 +1,56 @@
+# Kconfig - MMC configuration options
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+#
+# WIFI options
+#
+
+config WIFI_SSV6030P
+	bool "SSV6030P wifi driver"
+	depends on WIFI
+	default n
+	help
+	Enable SSV6030P wifi support on the selected board
+
+config WIFI_EXT_RX_INT
+	bool "SSV6030P wifi used external rx interrutp"
+	depends on WIFI_SSV6030P
+	default n
+	help
+	Enable SSV6030P wifi used external rx interrutp
+
+config WIFI_DCDC_MODE
+	bool "SSV6030P wifi used dcdc or ldo mode"
+	depends on WIFI_SSV6030P
+	default y
+	help
+	Enable SSV6030P wifi used dcdc or ldo mode
+
+config USE_ICOMM_LWIP
+	bool "SSV6030P wifi use lwip"
+	depends on WIFI
+	default n
+	help
+	Enable USE_ICOMM_LWIP support on the selected board
+
+config USE_WIFI_HEAP_MEM
+	bool "use wifi heap memory pool"
+	default n
+	depends on WIFI
+	help
+	This determines whether use wifi heap memory pool.

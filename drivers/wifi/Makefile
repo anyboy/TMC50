@@ -1,0 +1,2 @@
+obj-$(CONFIG_WIFI_SSV6030P) += ssv6030p/
+obj-$(CONFIG_WIFI_RTL8189FTV) += rtl8189ftv/

@@ -1,0 +1,118 @@
+# Kconfig - MIPS core configuration options
+
+#
+# Copyright (c) 2017 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config CPU_MIPS_M4K
+	bool
+	# Omit prompt to signify "hidden" option
+	default n
+	select ATOMIC_OPERATIONS_C
+	help
+	This option signifies the use of a CPU of the MIPS M4K family.
+
+config USE_MIPS16E
+	bool "Compile to mips16e instruction"
+	depends on MIPS
+	default n
+	help
+	  Compile to mips16e instruction to shrink code size.
+
+config EXTRA_EXCEPTION_INFO
+	bool "Extra exception debug information"
+	default n
+	help
+	Have exceptions print additional useful debugging information in
+	human-readable form, at the expense of code size. For example,
+	the cause code for an exception will be supplemented by a string
+	describing what that cause code means.
+
+config STACK_BACKTRACE
+	bool "Enable stack backtrace"
+	depends on MIPS
+	default n
+	select KALLSYMS
+	select THREAD_STACK_INFO
+	help
+	  Support dump stack backtrace by kallsyms.
+
+	  If you say Y here the resulting kernel image will be slightly larger
+	  but not slower, and it will give very useful debugging information.
+	  If you don't debug the kernel, you can say N, but we may not be able
+	  to solve problems without frame unwind information
+
+config STACK_MONITOR
+	bool "Enable stack usage monitor"
+	depends on MIPS
+	default n
+	select THREAD_STACK_INFO
+	help
+	  Support stack usage monitor. The kernel will check the thread stack
+	  usage at the entry of interrupt.
+
+config STACK_MONITOR_WARN_THRESHOLD
+	int "The warning threshold of free stack size"
+	depends on STACK_MONITOR
+	default 64
+	help
+	  Config the warning threshold of free stack size.
+
+config STACK_MONITOR_PARANOID
+	bool "Check stack usage more paranoid"
+	depends on STACK_MONITOR && INIT_STACKS
+	default n
+	help
+	  Check stack usage by comparing with stack initial magic data
+
+config IRQ_STAT
+	bool "Collect IRQ statistics"
+	depends on MIPS && GEN_SW_ISR_TABLE
+	default y
+	help
+	 Collect IRQ statistics, such as IRQ count, the maximum running cycles of IRQ.
+
+config IRQ_PRIO_HIGHEST
+    int
+    depends on CPU_MIPS_M4K
+    default 0
+    help
+       IRQ priority highest
+
+config IRQ_PRIO_HIGH
+    int
+    depends on CPU_MIPS_M4K
+    default 1
+    help
+       IRQ priority high
+
+config IRQ_PRIO_NORMAL
+    int
+    depends on CPU_MIPS_M4K
+    default 2
+    help
+       IRQ priority normal
+
+config IRQ_PRIO_LOW
+    int
+    depends on CPU_MIPS_M4K
+    default 3
+    help
+       IRQ priority low
+
+config SYS_IRQ_LOCK
+    bool "Lock irq by VIC interface"
+    depends on CPU_MIPS_M4K
+    default n
+    help
+      Lock irq by VIC interface. Some special IRQ (e.g. bluetooth controller)
+      still can be proccessed when using sys irq lock.
+
+config SYS_IRQ_LOCK_EXCEPT_BT_CON
+    bool "Lock irq except bluetooth controller IRQ"
+    depends on SYS_IRQ_LOCK
+    default n
+    help
+      Lock irq except bluetooth controller IRQ.

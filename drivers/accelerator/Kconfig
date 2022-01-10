@@ -1,0 +1,42 @@
+# Kconfig - Actions SoC Audio Accelerator configuration options
+#
+#
+# Copyright (c) 2020 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig ACCELERATOR_ACTS
+	bool "Audio Accelerator driver for Actions SoC"
+	default n
+	depends on SOC_FAMILY_ACTS
+	help
+	Actions SoC audio accelerator driver.
+
+config ACCELERATOR_ACTS_DEV_NAME
+	string "Device Name for Actions SoC Audio Accelerator"
+	default "audio_accelerator_acts"
+	depends on ACCELERATOR_ACTS
+	help
+	Device name for Actions SoC Audio Accelerator.
+
+config ACCELERATOR_ACTS_DEVICE_INIT_PRIORITY
+	int "Audio Accelerator Device Init Priority"
+	default 10
+	depends on ACCELERATOR_ACTS
+	help
+	This option controls the priority of Audio Accelerator device initialization.
+	Higher priority ensures that the device is initialized earlier
+	in the startup cycle. If unsure, leave at default value.
+
+	string "Device Name for Actions SoC Audio Accelerator"
+	default 10
+	depends on ACCELERATOR_ACTS
+	help
+	Device name for Actions SoC Audio Accelerator.
+
+if ACCELERATOR_ACTS
+
+source "drivers/accelerator/woodpecker/Kconfig"
+
+endif # ACCELERATOR_ACTS

@@ -1,0 +1,13 @@
+# Kconfig.acts - acts random generator driver configuration
+#
+# Copyright (c) 2016 ARM Ltd.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig RANDOM_ACTS_TRNG
+	bool "ACTS TRNG driver"
+	depends on RANDOM_GENERATOR
+	default n
+	help
+	  This option enables the true random number generator (TRNG)
+	  driver based on the ACTS TRNG driver.

@@ -1,0 +1,306 @@
+# Copyright (c) 2020 Actions Semiconductor Co.,Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+if AUDIO_OUT_ACTS_WOODPECKER
+
+config DAC_AUTOMUTE_COUNT
+	int
+	prompt "DAC Auto Mute Counter Selection"
+	default 1
+	range 0 3
+	help
+		The counter selection which control the mute time as shown below
+		- 0: 512 (10ms at 48ksr)
+		- 1: 1024 (20ms at 48ksr)
+		- 2: 2048 (40ms at 48ksr)
+		- 3: 4096 (80ms at 48ksr)
+
+config DAC_LR_MIX
+	bool
+	prompt "DAC Left Channel Mix Right Channel"
+	default n
+	help
+		If you say Y here, you will enable the function that the DAC left channel mix the right channel.
+		This function can only be used in stereo channel mode, and both the left and right channel will
+		output the same mixed data.
+		If unsure, it is safe to say N.
+
+config LEFT_CHANNEL_MUTE
+	bool
+	prompt "DAC Left Channel Mute"
+	default n
+	help
+		If you say Y here, you will enable the DAC left channel mute function
+		If unsure, it is safe to say N.
+
+config RIGHT_CHANNEL_MUTE
+	bool
+	prompt "DAC Right Channel Mute"
+	default n
+	help
+		If you say Y here, you will enable the DAC right channel mute function
+		If unsure, it is safe to say N.
+
+config PCMBUF_HE_THRESHOLD
+	hex "PCMBUF Half Empty Threshold"
+	default 0x200
+	help
+		This option specifies the half empty threshold of the PCMBUF
+
+config PCMBUF_HF_THRESHOLD
+	hex "PCMBUF Half Full Threshold"
+	default 0x600
+	help
+		This option specifies the half full threshold of the PCMBUF
+
+choice
+	prompt "DAC Physical Layout Selection"
+	default DAC_SINGLE_END_LAYOUT
+	help
+		This option will select the DAC physical layout.
+
+config DAC_SINGLE_END_LAYOUT
+	bool "DAC Single End Layout"
+	help
+		Enable the single end layout function within DAC
+
+config DAC_VRO_LAYOUT
+	bool "DAC VRO Layout"
+	help
+		Enable the VRO layout function which is a direct drive mode within DAC
+
+config DAC_DIFFERENCTIAL_LAYOUT
+	bool "DAC Differencial Layout"
+	help
+		Enable the differenctial layout funcion within DAC
+
+endchoice
+
+config PA_OUTPUT_MODE
+	int "PA Output Mode Selection"
+	default 0
+	range 0 1
+	help
+		This option specifies the PA output VPP control
+		- 0: 2.6VPP on single end and VRO layout; 5.2VPP on differential layout.
+		- 1: 1.6VPP on all physical layouts
+
+config I2STX_FORMAT
+	int "I2STX format Selection"
+	default 0
+	range 0 2
+	help
+		This option specifies the I2STX transfer format as shown below
+		- 0: I2S Format
+		- 1: Left Justified Format
+		- 2: Right Justified Format
+
+config I2STX_USE_ADC_256FS_CLK
+	bool
+	prompt "Enable the I2STX MCLK from ADC"
+	default n
+	help
+		If you say Y here, you will enable the clock source of I2STX MCLK from ADC module.
+		If unsure, it is safe to say N.
+
+config I2STX_SRD
+	bool
+	prompt "Enable the I2STX Sample Rate Detect Function"
+	default y
+	help
+		If you say Y here, you will get support the I2STX sample rate detect function which only works in case of slave mode.
+		If unsure, it is safe to say Y.
+
+config I2S_5WIRE
+	bool
+	prompt "Enable the I2STX 5 Wires Mode"
+	default n
+	help
+		If you say Y here, you will enable the I2STX 5 wires mode and in this case I2SRX shall worked in master mode.
+		If unsure, it is safe to say N.
+
+config I2S_PSEUDO_5WIRE
+	bool
+	prompt "Enable the I2STX Pseudo 5 Wires Mode"
+	default n
+	help
+		If you say Y here, you will enable the I2STX pseudo 5 wires mode and in this case I2SRX shall worked in slave mode.
+		If unsure, it is safe to say N.
+
+config I2STX_SLAVE_MCLKSRC_INTERNAL
+	bool
+	prompt "Enable the I2STX MCLK from internal in Slave Mode"
+	default n
+	help
+		If you say Y here, you will enable the I2STX MCLK clock source from internal used in the slave mode.
+		If unsure, it is safe to say Y.
+
+config I2STX_MCLKSRC_EXT_REVERSE
+	bool
+	prompt "Enable the I2STX MCLK from external uses reverse phase"
+	default n
+	help
+		If you say Y here, you will enable the I2STX MCLK clock source from external uses reverse phase.
+		If unsure, it is safe to say Y.
+
+config I2STX_MAINTAIN_ALWAYS_OUTPUT
+	bool
+	prompt "Enable the I2STX maintain always output state"
+	default y
+	help
+		If you say Y here, you will get support the I2STX always maintain output state.
+		If unsure, it is safe to say Y.
+
+config I2STX_CLK_OUT_FOLLOW_DMA
+	bool
+	prompt "Enable the I2STX clock output function follows by DMA"
+	default n
+	help
+		If you say Y here, you will get support the I2STX clocks(MCLK/BCLK/LRCLK) output function follows by DMA.
+		If unsure, it is safe to say N.
+
+choice
+	prompt "SPDIFTX Main Clock Source Selection"
+	default SPDIFTX_USE_I2STX_MCLK
+	help
+		This option will select the SPDIFRX main clock source.
+
+config SPDIFTX_USE_I2STX_MCLK
+	bool "I2STX MCLK Clock Source"
+	help
+		Select the SPDIFTX clock source from I2STX_MCLK
+
+config SPDIFTX_USE_I2STX_MCLK_DIV2
+	bool "I2STX MCLK Clock Division 2 Source"
+	help
+		Select the SPDIFTX clock source from I2STX_MCLK_DIV2
+
+config SPDIFTX_USE_ADC_DIV2_CLK
+	bool "ADC 256FS Clock Division 2 Source"
+	help
+		Select the SPDIFTX clock source from ADC_DIV2_CLK
+endchoice
+
+endif #AUDIO_OUT_ACTS_WOODPECKER
+
+if AUDIO_IN_ACTS_WOODPECKER
+
+config ADC_DMIC
+	bool
+	prompt "Enable ADC use DMIC"
+	default n
+	help
+		If you say Y here, you will get support the digital MIC function in ADC.
+		If unsure, it is safe to say N.
+
+config ADC_LCH_HPF_AUTOSET_TIME
+	int "The ADC Left Channel HPF Auto Set Time Selection"
+	default 2
+	range 0 3
+	help
+		This option chooses the HPF(High Pass Filter) auto set time as shown below(under 48ksr):
+		-0: 1.3ms
+		-1: 5ms
+		-2: 10ms
+		-3: 20ms
+
+config ADC_LCH_HPF_HIGH_FREQ
+	bool
+	prompt "Select the ADC Left Channel HPF High Frequency Range"
+	default n
+	help
+		If you say Y here, you will get support the high frequency range in ADC HPF.
+		If unsure, it is safe to say N and use the low frequency range.
+
+config ADC_LCH_HPF_FC_SEL
+	int "The Left Channel FC selection"
+	default 0
+	range 0 63
+	help
+		This option specifies the frequency FC value in HPF module.
+
+config ADC_RCH_HPF_AUTOSET_TIME
+	int "The ADC Right Channel HPF Auto Set Time Selection"
+	default 2
+	range 0 3
+	help
+		This option chooses the HPF(High Pass Filter) auto set time as shown below(under 48ksr):
+		-0: 1.3ms
+		-1: 5ms
+		-2: 10ms
+		-3: 20ms
+
+config ADC_RCH_HPF_HIGH_FREQ
+	bool
+	prompt "Select the ADC Right Channel HPF High Frequency Range"
+	default n
+	help
+		If you say Y here, you will get support the high frequency range in ADC HPF.
+		If unsure, it is safe to say N and use the low frequency range.
+
+config ADC_RCH_HPF_FC_SEL
+	int "The Right Channel FC selection"
+	default 0
+	range 0 63
+	help
+		This option specifies the frequency FC value in HPF module.
+
+config I2SRX_FORMAT
+	int "I2SRX format Selection"
+	default 0
+	range 0 2
+	help
+		This option specifies the I2SRX transfer format as shown below
+		- 0: I2S Format
+		- 1: Left Justified Format
+		- 2: Right Justified Format
+
+config I2SRX_SRD
+	bool
+	prompt "Enable the I2SRX Sample Rate Detect Function"
+	default n
+	help
+		If you say Y here, you will get support the I2SRX sample rate detect function which only works in case of slave mode.
+		If unsure, it is safe to say Y.
+
+choice
+	prompt "I2SRX MCLK Clock Source Selection"
+	default I2SRX_USE_I2SRX_CLK
+	help
+		This option will select the I2SRX MCLK clock source.
+
+config I2SRX_USE_I2SRX_CLK
+	bool "I2SRX MCLK Clock Source"
+	help
+		Select the I2SRX MCLK clock source from I2SRX_CLK
+
+config I2SRX_USE_I2STX_MCLK
+	bool "I2STX MCLK Clock Source"
+	help
+		Select the I2SRX MCLK clock source from I2STX_MCLK
+
+config I2SRX_USE_ADC_256FS_CLK
+	bool "ADC 256FS Clock Source"
+	help
+		Select the I2SRX MCLK clock source from ADC_256FS_CLK
+endchoice
+
+config I2SRX_SLAVE_MCLKSRC_INTERNAL
+	bool
+	prompt "Enable the I2SRX MCLK from internal in Slave Mode"
+	default n
+	help
+		If you say Y here, you will enable the I2SRX MCLK clock source from internal used in the slave mode.
+		If unsure, it is safe to say Y.
+
+config I2SRX_MCLKSRC_EXT_REVERSE
+	bool
+	prompt "Enable the I2SRX MCLK from external uses reverse phase"
+	default n
+	help
+		If you say Y here, you will enable the I2SRX MCLK clock source from external uses reverse phase.
+		If unsure, it is safe to say Y.
+
+endif #CONFIG_AUDIO_IN_ACTS_WOODPECKER

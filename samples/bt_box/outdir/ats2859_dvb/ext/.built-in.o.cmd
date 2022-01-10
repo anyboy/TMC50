@@ -1,0 +1,1 @@
+cmd_ext/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o ext/built-in.o ext/hal/built-in.o ext/lib/built-in.o ext/fs/built-in.o ext/debug/built-in.o ext/actions/built-in.o 

@@ -1,0 +1,1 @@
+obj-$(CONFIG_WIFI_SSV6030P) += porting.o sdio_port.o

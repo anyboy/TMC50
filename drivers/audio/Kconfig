@@ -1,0 +1,210 @@
+# Kconfig - Audio configuration options
+#
+#
+# Copyright (c) 2017 Actions Semiconductor Co.,Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig AUDIO
+	bool
+	prompt "audio Drivers"
+	default n
+	help
+	Enable options for audio drivers.
+
+if AUDIO
+
+config AUDIO_OUT_ACTS
+	bool
+	prompt "Actions SoC audio output driver"
+	default n
+	select AUDIO_OUT_ACTS_WOODPECKER
+	help
+	Device driver for Actions SoC audio output
+
+config AUDIO_OUT_ACTS_ROCKY
+	bool
+	prompt "Actions SoC audio output driver for rocky"
+	default n
+	depends on SOC_SERIES_ROCKY
+	help
+	Device driver for Actions SoC audio output
+
+config AUDIO_OUT_ACTS_ANDES
+	bool
+	prompt "Actions SoC audio output driver for andes"
+	default n
+	depends on SOC_SERIES_ANDESM || SOC_SERIES_ANDES && AUDIO_OUT_ACTS
+	help
+	Device driver for Actions SoC audio output
+
+config AUDIO_OUT_ACTS_WOODPECKER
+	bool
+	prompt "Actions SoC audio output driver for woodpecker"
+	default y
+	depends on SOC_SERIES_WOODPECKER && AUDIO_OUT_ACTS
+	help
+	Device driver for Actions SoC audio output
+
+config AUDIO_OUT_ACTS_DEV_NAME
+	string "Device Name for Actions SoC audio output"
+	default "audio_out"
+	depends on AUDIO_OUT_ACTS
+	help
+	  This is the device name for audio output, and is included in the
+	  device struct.
+
+config AUDIO_OUT_DAC_SUPPORT
+	bool
+	prompt "enable DAC out or not"
+	default y
+	depends on AUDIO_OUT_ACTS
+	help
+	audio enable DAC out or not.
+
+config AUDIO_OUT_I2STX0_SUPPORT
+	bool
+	prompt "enable i2s tx0 out or not"
+	default n
+	depends on AUDIO_OUT_ACTS
+	help
+	audio enable i2stx0 out or not.
+
+config AUDIO_OUT_SPDIFTX_SUPPORT
+	bool
+	prompt "enable spdif tx out or not"
+	default n
+	depends on AUDIO_OUT_ACTS
+	help
+	audio enable spdif out or not.
+
+config AUDIO_IN_ACTS
+	bool
+	prompt "Actions SoC audio input driver"
+	default n
+	select AUDIO_IN_ACTS_WOODPECKER
+	help
+	Device driver for Actions SoC audio input
+
+config AUDIO_IN_ACTS_ROCKY
+	bool
+	prompt "Actions SoC audio input driver for rocky"
+	default n
+	depends on SOC_SERIES_ROCKY && AUDIO_IN_ACTS
+	help
+	Device driver for Actions SoC audio input
+
+config AUDIO_IN_ACTS_ANDES
+	bool
+	prompt "Actions SoC audio input driver for andes"
+	default n
+	depends on SOC_SERIES_ANDESM || SOC_SERIES_ANDES && AUDIO_IN_ACTS
+	help
+	Device driver for Actions SoC audio input
+
+config AUDIO_IN_ACTS_WOODPECKER
+	bool
+	prompt "Actions SoC audio input driver for woodpecker"
+	default y
+	depends on SOC_SERIES_WOODPECKER && AUDIO_IN_ACTS
+	help
+	Device driver for Actions SoC audio input
+
+config AUDIO_IN_ACTS_DEV_NAME
+	string "Device Name for Actions SoC audio input"
+	default "audio_in"
+	depends on AUDIO_IN_ACTS
+	help
+	  This is the device name for audio input, and is included in the
+	  device struct.
+
+config AUDIO_IN_ADC_SUPPORT
+	bool
+	prompt "enable ADC out or not"
+	default y
+	depends on AUDIO_IN_ACTS
+	help
+	audio enable ADC in or not.
+
+config AUDIO_IN_I2SRX0_SUPPORT
+	bool
+	prompt "enable i2s rx0 in or not"
+	default n
+	depends on AUDIO_IN_ACTS
+	help
+	audio enable i2srx0 in or not.
+
+config AUDIO_IN_I2SRX1_SUPPORT
+	bool
+	prompt "enable i2s rx1 in or not"
+	default n
+	depends on AUDIO_IN_ACTS
+	help
+	audio enable i2srx1 in or not.
+
+config AUDIO_IN_SPDIFRX_SUPPORT
+	bool
+	prompt "enable spdif rx in or not"
+	default n
+	depends on AUDIO_IN_ACTS
+	help
+	audio enable spdif in or not.
+
+config BOARD_EXTERNAL_PA_ENABLE
+	bool
+	prompt "enable external pa or not"
+	default n
+	help
+	Enable external pa or not.
+
+config EXTERN_PA_CLASS
+	int "set external pa default class mode"
+	depends on BOARD_EXTERNAL_PA_ENABLE
+	default 1
+	range 0 1
+	help
+	Set extern pa class mode, 0 for classAB, other value for classD.
+
+config AUDIO_POWERON_OPEN_PA
+	bool
+	prompt "open PA when power on"
+	depends on AUDIO_OUT_DAC_SUPPORT
+	default y
+	help
+	Open PA when power on or not.
+
+config AUDIO_POWERON_OPEN_I2STX
+	bool
+	prompt "open I2STX when power on"
+	depends on AUDIO_OUT_I2STX0_SUPPORT
+	default y
+	help
+	Open I2STX when power on or not.
+
+config AUDIO_ASRC_ACTS_DEV_NAME
+	string "Device Name for Actions SoC audio asrc"
+	default "audio_asrc"
+	help
+	  This is the device name for audio asrc, and is included in the
+	  device struct.
+
+config AUDIO_DRV_SHELL
+	bool "Acts audio driver shell support"
+	depends on CONSOLE_SHELL
+	default y
+	help
+	If you say Y here, you will get support for the actions audio driver shell.
+
+config AUDIO_ACTS_UTILS
+	bool "Acts audio driver utils support"
+	depends on AUDIO_OUT_ACTS || AUDIO_IN_ACTS
+	default y
+	help
+	If you say Y here, you will get support for the actions audio driver utils.
+
+if AUDIO_OUT_ACTS_WOODPECKER || AUDIO_IN_ACTS_WOODPECKER
+source "drivers/audio/phy_woodpecker/Kconfig"
+endif
+
+endif # AUDIO

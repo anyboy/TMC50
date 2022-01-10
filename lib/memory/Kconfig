@@ -1,0 +1,9 @@
+# Kconfig - Actions app function
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+       
+source "lib/memory/source/Kconfig"

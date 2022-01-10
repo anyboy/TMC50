@@ -1,0 +1,196 @@
+# Kconfig - USB Audio Source configuration options
+
+#
+# Copyright (c) 2018 Actions Corp.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+if USB
+config USB_AUDIO_CLASS
+	bool
+
+config USB_AUDIO_SOURCESINK
+	bool
+	prompt "USB Audio Source && Sink Device Support"
+	default n
+	select USB_AUDIO_CLASS
+	help
+	  Enables USB Audio Source && Sink Device Support.
+
+if USB_AUDIO_SOURCESINK
+
+config USB_AUDIO_DEVICE_MANUFACTURER
+	string
+	prompt "USB manufacturer name"
+	default "ZEPHYR"
+	help
+	  USB audio device Manufacturer string. MUST be configured by vendor.
+
+config USB_AUDIO_DEVICE_PRODUCT
+	string
+	prompt "USB product name"
+	default "USB-AUDIO"
+	help
+	  USB audio device Product string. MUST be configured by vendor.
+
+config USB_AUDIO_DEVICE_SN
+	string
+	prompt "USB serial number"
+	default "0.01"
+	help
+	  USB audio device SerialNumber string. MUST be configured by vendor.
+
+config USB_AUDIO_DEVICE_VID
+	hex
+	prompt "USB audio device vendor ID"
+	default 0x10d6
+	help
+	  USB audio device vendor ID. MUST be configured by vendor.
+
+config USB_AUDIO_DEVICE_PID
+	hex
+	prompt "USB audio device product ID"
+	default 0xb00f
+	help
+	  USB audio device product ID. MUST be configured by vendor.
+
+config USB_AUDIO_SOURCE_IN_EP_ADDR
+	hex
+	prompt "USB Audio Source In Endpoint Address"
+	default 0x81
+	range 0x81 0x8f
+	help
+	  USB Audio Source In Endpoint Address
+
+config USB_AUDIO_SINK_OUT_EP_ADDR
+	hex
+	prompt "USB Audio Sink Out Endpoint address"
+	default 0x01
+	range 0x01 0x0f
+	help
+	  USB Audio Sink Out Endpoint address
+
+config USB_AUDIO_SOURCE_SAM_FREQ_UPLOAD
+	int
+	prompt "USB Audio Source (1st) upload samplings frequency (unit: Hz)"
+	default 48000
+	help
+	  USB Audio Source sampling frequency (unit: Hz)
+
+config USB_AUDIO_SINK_SAM_FREQ_DOWNLOAD
+	int
+	prompt "USB Audio Sink (1st) download samplings frequency (unit: Hz)"
+	default 48000
+	help
+	  USB Audio Sink sampling frequency (unit: Hz)
+
+config USB_AUDIO_SINK_SAMPLE_FREQ_TYPE
+	int
+	prompt "USB Audio Sink sampling frequency type"
+	default 1
+	range 1 4
+	help
+	  USB Audio Sink sampling frequency type
+
+config USB_AUDIO_UPLOAD_CHANNEL_NUM
+	int
+	prompt "USB Audio Source Channel number"
+	default 1
+	help
+	  USB Audio Source Channel number
+
+config USB_AUDIO_DOWNLOAD_CHANNEL_NUM
+	int
+	prompt "USB Audio Sink Channel number"
+	default 2
+	help
+	  USB USB Audio Sink Channel number
+
+config USB_AUDIO_SINK_MAINCH_CONFIG
+	hex
+	prompt "USB Audio Main Channel Configuration"
+	default 0x03
+	range 0x0000 0x03ff
+	help
+	  USB Audio Source channel config
+
+config USB_AUDIO_SINK_LOGICALCH01_CONFIG
+	hex
+	prompt "USB Audio Logical Channel_01 Configuration"
+	default 0x02
+	range 0x0000 0x03ff
+	help
+	  USB Audio Logical channel_1 Configuration
+
+config USB_AUDIO_SINK_LOGICALCH02_CONFIG
+	hex
+	prompt "USB Audio Logical Channel_02 Configuration"
+	default 0x02
+	range 0x0000 0x03ff
+	help
+	  USB Audio Logical channel_2 Configuration
+
+config USB_AUDIO_BCONTROLSIZE
+	int
+	prompt "USB Audio Source resolution (unit: bit)"
+	default 1
+	range 1 2
+	help
+	  USB Audio Source resolution (unit: bit), The maximum value is 2
+
+config USB_AUDIO_SINK_RESOLUTION
+	int
+	prompt "Size in bytes of Sampling bits of per sample"
+	default 16
+	help
+	  Size in bytes of Sampling bits of per sample
+
+config SUPPORT_HD_AUDIO_PLAY
+	bool
+	prompt "Support HD audio playback"
+	default n
+	help
+	  Support HD audio playback.
+
+if SUPPORT_HD_AUDIO_PLAY
+
+config USB_AUDIO_SINK_HD_RESOLUTION
+	int
+	prompt "Size in bytes of Sampling bits of per sample"
+	default 24
+	help
+	  Size in bytes of Sampling bits of per sample
+
+config USB_AUDIO_SINK_HD_SAM_FREQ_DOWNLOAD
+	int
+	prompt "USB Audio Sink HD-Format Download Samplings Frequency (unit: Hz)"
+	default 96000
+	help
+	  HD-Format Download Samplings Frequency (unit: Hz)
+
+endif #CONFIG_SUPPORT_HD_AUDIO_PLAY
+
+config SUPPORT_USB_AUDIO_SOURCE
+	bool
+	prompt "Support USB audio source(Microphone)"
+	default n
+	help
+	  Support USB audio source(Microphone).
+
+config USB_AUDIO_DEVICE_IF_NUM
+	int
+	prompt "Interface number of usb composite device"
+	default 0
+	help
+	  Interface number of usb composite device
+
+config USB_AUDIO_CONTROL_UNIT
+	bool
+	prompt "Define usb audio control unit"
+	default n
+	help
+	  Define usb audio control unit.
+
+endif # USB_AUDIO_SOURCESINK
+endif # USB

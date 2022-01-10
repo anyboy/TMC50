@@ -1,0 +1,180 @@
+# Kconfig - Actions Bluetooth SoC configuration options
+
+#
+# Copyright (c) 2018 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+choice
+	prompt "Actions Woodpecker Bluetooth SoC"
+	depends on SOC_SERIES_WOODPECKER
+
+source "arch/mips/soc/actions/woodpecker/Kconfig.soc.*"
+
+endchoice
+
+if SOC_SERIES_WOODPECKER
+
+config SOC_DSP_CLK_FREQ
+	int "DSP clock frequence (KHz)"
+	range 30000 400000
+	help
+	  config Actions SoC DSP clock frequence (KHz)
+
+config SOC_CPU_CLK_FREQ
+	int "CPU clock frequence (KHz)"
+	range 30000 216000
+	help
+	  config Actions SoC CPU clock frequence (KHz)
+
+config SOC_VDD_VOLTAGE
+	int "VDD Voltage (mV)"
+	range 800 1500
+	help
+	  VDD Voltage (mV) 
+
+config SOC_MAPPING_PSRAM
+	bool "enable PSRAM mapping"
+	default n
+	help
+	  Enable SPI cache profile for Andes SoC
+
+if SOC_MAPPING_PSRAM
+config SOC_MAPPING_PSRAM_ADDR
+	hex "PSRAM mapping space base address"
+	default 0
+	help
+	  PSRAM mapping space base address
+
+config SOC_MAPPING_PSRAM_SIZE
+	hex "PSRAM mapping space size"
+	default 0
+	help
+	  PSRAM mapping space size
+
+config SOC_MAPPING_PSRAM_FOR_OS
+	bool "enable PSRAM mapping for OS"
+	default n
+	help
+	  Enable PSRAM mapping for OS
+endif
+
+config HOSC_CLK_MHZ
+    int 
+    default 24
+    help
+      config Actions SoC hosc frequency
+
+config SOC_SPREAD_SPECTRUM
+    bool "enable SOC spread spectrum"
+    default y
+    help
+      enable SOC spread spectrum
+
+config ESD_SUPPORT
+    bool "support ESD"
+    default y    
+    help
+      config Actions SoC support ESD  
+
+config IDLE_CLOSE_CPU_CLK
+    bool "close cpu clock when cpu is idle"
+    default n
+    help
+        config close cpu clock when cpu excecute wait instuction
+
+config CPU0_EJTAG_ENABLE
+    bool "enable cpu0 ejtag or not"
+    default n
+    help
+      config cpu0 ejtag enable
+
+config CPU0_EJTAG_GROUP
+    int "CPU0 EJTAG group select"
+    default 0
+    help
+      config cpu0 ejtag group
+
+config CPU0_PANIC_EJTAG_ENABLE
+    bool "CPU0 EJTAG group select when panic"
+    default n
+    help
+      config cpu0 ejtag group when panic
+
+config DSP_EJTAG_ENABLE
+    bool "enable dsp ejtag or not"
+    default n
+    help
+      config dsp ejtag enable    
+      
+config DSP_EJTAG_GROUP
+    int "DSP EJTAG group select"
+    default 0
+    depends on DSP_EJTAG_ENABLE
+    help
+      config dsp ejtag group                  
+
+config SOC_SPI_USE_COREPLL
+    bool "enable cpu spi use corepll clock source "
+    default n
+    help
+      enable cpu spi use corepll clock source  
+         
+config SOC_SPI_USE_SPLL
+    bool "enable cpu spi use spll clock source "
+    default y
+    help
+      enable cpu spi use corepll clock source  
+
+config PM_SLEEP_TIME_TRACE
+    bool "Enable s3bt and s2 time trace"
+    default n
+    help
+      Enable s3bt and s2 time trace
+
+menu "SOC wakeup source"
+config SOC_WKEN_DC5V
+	bool "enable plug in 5v adapter to wakeup system"
+	default y
+	help
+	  Enable plug in 5v adapter to wakeup system
+
+config SOC_WKEN_BAT
+	bool "enable plug in battery to wakeup system"
+	default n
+	help
+	  Enable plug in battery to wakeup system
+
+config SOC_WKEN_ONOFF_SHORT
+	bool "enable short press onoff to wakeup system"
+	default n
+	help
+	  Enable short press onoff to wakeup system
+
+config SOC_WKEN_ONOFF_LONG_PRESS_TIMER
+	int "config long press onoff time MS to wake up system"
+	default 1000
+	help
+	  Config long press onoff time MS to wake up system
+endmenu
+
+menu "SOC Power Mangerment"
+
+config PM_CPU_IDLE_LOW_POWER
+	bool "enable cpu to low power when idle"
+	default n
+	help
+	  Decease cpu frequence to when cpu is in idle state
+
+config PM_CPU_IDLE_FREQ_KHZ
+	int "cpu frequence in idle state (KHz)"
+	depends on PM_CPU_IDLE_LOW_POWER
+	range 10000 180000
+	default 30000
+	help
+	  Reduce cpu frequence to save power consume when cpu is in idle state
+endmenu
+
+endif
+source "arch/mips/soc/actions/woodpecker/rom_config/Kconfig"

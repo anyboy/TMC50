@@ -1,0 +1,5 @@
+# Build config
+BOARD=ats2859_dvb
+APPLICATION=bt_box
+CONFIG=dvb_cascade_285a_with_dsp
+MIPSSDE_TOOLCHAIN_PATH=/opt/mips-mti-elf/2019.09-01

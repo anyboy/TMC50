@@ -1,0 +1,21 @@
+# Kconfig - Actions system manager
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config SERIALWIRTER
+	bool
+	prompt "Serial Writer"
+	depends on ACTIONS_COMPONENT_FUNCTION
+	default n
+	help
+	This option enables actions serial writer.
+
+
+
+
+
+

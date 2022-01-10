@@ -1,0 +1,1 @@
+cmd_subsys/disk/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o subsys/disk/built-in.o subsys/disk/disk_access_usb.o subsys/disk/disk_access_sd.o subsys/disk/disk_access_nor.o 

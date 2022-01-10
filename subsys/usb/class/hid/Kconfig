@@ -1,0 +1,138 @@
+# Kconfig - USB HID configuration options
+
+#
+# Copyright (c) 2018 Intel Corp.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config USB_DEVICE_HID
+	bool
+	prompt "USB Human Interface Device support"
+	default n
+	help
+	  Enables USB Human Interface Device support.
+
+if USB_DEVICE_HID
+
+config USB_HID_DEVICE_IF_NUM
+	int
+	prompt "Interface number of hid device"
+	default 0
+	help
+	  Interface number of hid device
+
+config HID_INTERRUPT_IN_EP_MPS
+	int
+	prompt "USB HID Device Interrupt IN Endpoint size"
+	default 16
+	help
+	  USB HID Device interrupt endpoint size
+
+config HID_INTERRUPT_IN_EP_ADDR
+	hex
+	prompt "USB HID Device Interrupt Endpoint address"
+	default 0x81
+	range 0x81 0x8f
+	help
+	  USB HID Device Interrupt Endpoint address
+
+config USB_HID_MAX_PAYLOAD_SIZE
+	int
+	default 64
+	help
+	  Max allowed payload size over USB HID Class
+
+config HID_INTERRUPT_OUT
+	bool
+	prompt "USB HID Device Interrupt OUT support"
+	default n
+	help
+	  Enables USB HID Device Interrupt OUT support.
+
+if HID_INTERRUPT_OUT
+
+config HID_INTERRUPT_OUT_EP_MPS
+	int
+	prompt "USB HID Device Interrupt OUT Endpoint size"
+	default 16
+	help
+	  USB HID Device interrupt OUT endpoint size
+
+config HID_INTERRUPT_OUT_EP_ADDR
+	hex
+	prompt "USB HID Device Interrupt OUT Endpoint address"
+	default 0x01
+	range 0x01 0x0f
+	help
+	  USB HID Device Interrupt OUT Endpoint address
+
+endif # HID_INTERRUPT_OUT
+
+config HID_INTERRUPT_EP_INTERVAL_HS
+	hex
+	prompt "USB HID Device Interrupt Interval in High-Speed Mode"
+	default 0x4
+	range 0x1 0xff
+	help
+	  USB HID Device Interrupt Interval in High-Speed Mode
+
+config HID_INTERRUPT_EP_INTERVAL_FS
+	hex
+	prompt "USB HID Device Interrupt Interval in Full-Speed Mode"
+	default 0x1
+	range 0x1 0xff
+	help
+	  USB HID Device Interrupt Interval in Full-Speed Mode
+
+config HID_INTERRUPT_EP_INTERVAL
+	hex
+	prompt "USB HID Device Interrupt Interval"
+	default 0x1
+	range 0x1 0xff
+	help
+	  USB HID Device Interrupt Interval
+
+config USB_HID_DEVICE_MANUFACTURER
+	string
+	prompt "USB HID Device Manufacturer Name"
+	default "USB-DEV_MA"
+	help
+		USB hid device manufacturer string. can be configured by vendor.
+
+config USB_HID_DEVICE_PRODUCT
+	string
+	prompt "USB HID Device Product Name"
+	default "USB-DEV_PR"
+	help
+		USB hid device product string. can be configured by vendor.
+
+config USB_HID_DEVICE_SN
+	string
+	prompt "USB HID Device Serial Number"
+	default "0123456789AB"
+	help
+		USB hid device serialNumber string. can be configured by vendor.
+
+config USB_HID_DEVICE_VID
+	hex
+	prompt "USB hid device vendor ID"
+	default 0x10d6
+	help
+	  USB hid device vendor ID. MUST be configured by vendor.
+
+config USB_HID_DEVICE_PID
+	hex
+	prompt "USB hid device product ID"
+	default 0xb00e
+	help
+	  USB hid device product ID. MUST be configured by vendor.
+
+config HID_REPORT_DESC_SIZE
+	int
+	prompt "USB HID device hid report descriptor size"
+	default 64
+	help
+	  USB HID device hid report descriptor size
+
+endif # USB_DEVICE_HID

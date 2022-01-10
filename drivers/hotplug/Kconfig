@@ -1,0 +1,46 @@
+
+# Kconfig - Input device configuration options
+#
+#
+# Copyright (c) 2017 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config HOTPLUG_LINEIN_DETECT
+	bool "Actions SoC linein detect driver"
+	depends on SOC_FAMILY_ACTS
+	default n
+	help
+	  Enable support for Actions SoC linein detect driver.
+
+config HOTPLUG_LINEIN_DETECT_ADC_NAME
+	string "ADC device name for linein detect"
+	default "ADC_0"
+	help
+	  This option specifies the ADC device name for linein detect.
+
+config HOTPLUG_LINEIN_DETECT_ADC_CHAN
+	int "ADC channel number for linein detect"
+	help
+	  This option specifies the ADC channel number for linein detect.
+
+config HOTPLUG_DC5V_DETECT
+	bool "dc5v detect enable"
+	default y
+	help
+	  usb dc5v detect enable.
+
+config HOTPLUG_DC5V_WIO
+	int "dc5v detect wio port"
+	depends on HOTPLUG_DC5V_DETECT
+	default 1
+	help
+	  usb dc5v detect wakeup io port.
+
+config HOTPLUG_DC5V_LEVEL
+	int "dc5v detect wio level"
+	depends on HOTPLUG_DC5V_DETECT
+	default 1
+	help
+	  usb dc5v detect wakeup io level.

@@ -1,0 +1,94 @@
+# Kconfig - USB Source/Sink configuration options
+
+#
+# Copyright (c) 2018 Actions Corp.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config USB_DEVICE_SS
+	bool
+	prompt "USB Source/Sink Device support"
+	default n
+	help
+	  Enables USB Source/Sink Device support.
+
+if USB_DEVICE_SS
+
+config SS_IN_EP_MPS
+	int
+	prompt "USB Source/Sink In Endpoint size"
+	default 64
+	help
+	  USB Source/Sink In Endpoint size
+
+config SS_IN_EP_ADDR
+	hex
+	prompt "USB Source/Sink In Endpoint address"
+	default 0x81
+	range 0x81 0x8f
+	help
+	  USB Source/Sink In Endpoint address
+
+config SS_IN_EP_TYPE
+	int
+	prompt "USB Source/Sink In Endpoint type"
+	default 2
+	range 1 3
+	help
+	  USB Source/Sink In Endpoint type
+
+	  types are:
+
+	  - 1 Isochronous type endpoint
+
+	  - 2 Bulk type endpoint
+
+	  - 3 Interrupt type endpoint
+
+config SS_IN_EP_INTERVAL
+	int
+	prompt "USB Source/Sink In Endpoint interval"
+	default 0
+	help
+	  USB Source/Sink In Endpoint interval
+
+config SS_OUT_EP_MPS
+	int
+	prompt "USB Source/Sink Out Endpoint size"
+	default 64
+	help
+	  USB Source/Sink Out Endpoint size
+
+config SS_OUT_EP_ADDR
+	hex
+	prompt "USB Source/Sink Out Endpoint address"
+	default 0x01
+	range 0x01 0x0f
+	help
+	  USB Source/Sink Out Endpoint address
+
+config SS_OUT_EP_TYPE
+	int
+	prompt "USB Source/Sink Out Endpoint type"
+	default 2
+	range 1 3
+	help
+	  USB Source/Sink Out Endpoint type
+
+	  types are:
+
+	  - 1 Isochronous type endpoint
+
+	  - 2 Bulk type endpoint
+
+	  - 3 Interrupt type endpoint
+
+config SS_OUT_EP_INTERVAL
+	int
+	prompt "USB Source/Sink Out Endpoint interval"
+	default 0
+	help
+	  USB Source/Sink Out Endpoint interval
+
+endif # USB_DEVICE_SS

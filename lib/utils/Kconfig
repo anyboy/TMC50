@@ -1,0 +1,90 @@
+menuconfig ACTIONS_UTILS
+    bool
+    prompt "Actions Utils Support"
+    default y
+    help
+    This option enables the actions test service. 
+    
+menuconfig ACTIONS_TRACE
+    bool
+    prompt "Actions Trace Support"
+    depends on ACTIONS_UTILS
+    default n
+    help
+    This option enables the actions trace service.
+    
+config TRACE_UART                               
+    bool
+    prompt "Actions Trace Uart Support"
+    depends on ACTIONS_TRACE
+    default y
+   
+config TRACE_FILE                               
+    bool
+    prompt "actions trace file Support"
+    depends on ACTIONS_TRACE
+    default n    
+    
+config TRACE_CONTEXT_SHELLTASK                               
+    bool
+    prompt "trace output context by shell thread or not"
+    depends on ACTIONS_TRACE
+    default n    
+    
+config TRACE_EVENT                               
+    bool
+    prompt "trace system event"
+    depends on ACTIONS_TRACE
+    default n
+    
+config TRACE_EVENT_BUFFERSIZE
+    int 
+    prompt "trace event buffer size"
+    depends on TRACE_EVENT
+    default 4096  
+    
+config TRACE_PERF_ENABLE                               
+    bool
+    prompt "trace performance enable"
+    depends on ACTIONS_TRACE
+    default n  
+    
+config TRACE_USE_ROM_CODE                               
+    bool
+    prompt "trace use rom vsnprintf"
+    depends on ACTIONS_TRACE
+    default n   
+    
+config TRACE_TIME_FREFIX                               
+    bool
+    prompt "trace use timestamp prefix"
+    depends on ACTIONS_TRACE
+    default n                                
+    
+config CONSOLE_ACTIONS_INIT_PRIORITY                               
+    int
+    prompt "Actions Trace Init Priority"
+    depends on ACTIONS_TRACE
+    default 61 
+
+config ACTS_RING_BUFFER
+	bool
+	prompt "Actions Ring Buffers Support"
+	depends on ACTIONS_UTILS
+	default n
+	help
+	Enable usage of actions ring buffers. This is similar to kernel ring buffer,
+	except that it contains a device address and support arbitrary buffer size.
+	For optimal performance, use buffer sizes that are a power of 2.
+
+config ACTS_TRANSCODE
+	bool
+	prompt "Actions Transcode Support"
+	depends on ACTIONS_UTILS
+	default n
+	help
+	Enable usage of actsions Enable actions transcode.
+
+
+source "lib/utils/source/stream/Kconfig"
+source "lib/utils/source/iterator/Kconfig"

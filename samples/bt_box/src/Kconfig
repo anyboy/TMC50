@@ -1,0 +1,85 @@
+# Kconfig - ACTIONS primitive options for sdk version 2.0
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+menu "BT Box App"
+
+source "samples/bt_box/src/Kconfig.def"
+
+config APP_PRIORITY
+    int
+    prompt "App Thread Priority"
+    default 10
+    help
+    This option set app thread priority
+
+config APP_STACKSIZE
+    int
+    prompt "App Thread Stack Size"
+    default 2048
+    help
+    This option set stack size for app thread
+
+menu "App Configuration"
+
+source "samples/bt_box/src/main/Kconfig"
+
+source "samples/bt_box/src/btmusic/Kconfig"
+
+source "samples/bt_box/src/btcall/Kconfig"
+
+source "samples/bt_box/src/ota/Kconfig"
+
+source "samples/bt_box/src/tws/Kconfig"
+
+source "samples/bt_box/src/tool/Kconfig"
+
+source "samples/bt_box/src/att/Kconfig"
+
+source "samples/bt_box/src/ais_gma/Kconfig"
+
+source "samples/bt_box/src/lcmusic/Kconfig"
+
+source "samples/bt_box/src/local_player/Kconfig"
+
+source "samples/bt_box/src/loop_music/Kconfig"
+
+source "samples/bt_box/src/audio_input/Kconfig"
+
+source "samples/bt_box/src/record/Kconfig"
+
+source "samples/bt_box/src/record_service/Kconfig"
+
+source "samples/bt_box/src/usound/Kconfig"
+
+source "samples/bt_box/src/card_reader/Kconfig"
+
+source "samples/bt_box/src/charger/Kconfig"
+
+source "samples/bt_box/src/alarm/Kconfig"
+
+source "samples/bt_box/src/fm/Kconfig"
+
+source "samples/bt_box/src/aging_playback/Kconfig"
+
+source "samples/bt_box/src/test/Kconfig"
+
+endmenu
+
+endmenu
+
+

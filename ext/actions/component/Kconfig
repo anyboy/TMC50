@@ -1,0 +1,30 @@
+# Kconfig - Actions component function
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig ACTIONS_COMPONENT_FUNCTION
+	bool
+	prompt "Actions Component Support"
+	default n
+	help
+	This option enables actions app funcion.
+
+source "ext/actions/component/audio/Kconfig"
+source "ext/actions/component/input/Kconfig"
+source "ext/actions/component/hotplug/Kconfig"
+source "ext/actions/component/media/Kconfig"
+source "ext/actions/component/power/Kconfig"
+source "ext/actions/component/property/Kconfig"
+source "ext/actions/component/system/Kconfig"
+source "ext/actions/component/bt_manager/Kconfig"
+source "ext/actions/component/tts/Kconfig"
+source "ext/actions/component/fs_manager/Kconfig"
+source "ext/actions/component/display/Kconfig"
+source "ext/actions/component/serialwriter/Kconfig"
+source "ext/actions/component/network/Kconfig"
+source "ext/actions/component/alarm_manager/Kconfig"
+source "ext/actions/component/fm/Kconfig"

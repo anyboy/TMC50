@@ -1,0 +1,1 @@
+cmd_drivers/audio/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/audio/built-in.o drivers/audio/audio_out_acts.o drivers/audio/audio_in_acts.o drivers/audio/audio_acts_utils.o drivers/audio/shell/audio_driver_shell.o drivers/audio/phy_woodpecker/built-in.o 

@@ -1,0 +1,97 @@
+# Kconfig - Actions network
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig NETWORK
+	bool
+	prompt "Network"
+	depends on ACTIONS_COMPONENT_FUNCTION
+	default n
+	help
+	This option enables actions network 
+
+config WIFI_MANAGER
+       bool
+       prompt "wifi manager Support"
+       depends on NETWORK
+       default n
+       help
+       This option enables actions wifi manager
+       
+config CA_MANAGER
+       bool
+       prompt "ca manager Support"
+       depends on NETWORK
+       default n
+       help
+       This option enables actions ca manager
+
+config NETWORK_HELPER
+	bool
+	prompt "net work helper Support"
+	depends on NETWORK
+	default n
+	help
+	This option enables actions net work helper for tcp http mqtt.
+
+config TCP_HELPER
+        bool
+        prompt "tcp protocol helper "
+		depends on NETWORK_HELPER
+        default n
+        help
+        This option enables tcp protocol helper 
+
+config HTTP_HELPER
+        bool
+        prompt "http protocol helper "
+		depends on NETWORK_HELPER
+        default y
+        help
+        This option enables http protocol helper 
+
+config SOCKET_HELPER
+        bool
+        prompt "socket protocol helper "
+		depends on NETWORK_HELPER
+        default n
+        help
+        This option enables socket protocol helper
+
+config DNS_HELPER
+        bool
+        prompt "dns protocol helper "
+		depends on NETWORK_HELPER
+        default n
+        help
+        This option enables dns protocol helper
+
+config MQTT_HELPER
+        bool
+        prompt "mqtt protocol helper "
+		depends on NETWORK_HELPER
+        default n
+        help
+        This option enables mqtt protocol helper 
+
+config WEBSOCKET_HELPER
+        bool
+        prompt "websocket protocol helper "
+		depends on NETWORK_HELPER
+        default n
+        help
+        This option enables websocket protocol helper
+
+config TCP_KEEP_CONTEXT
+        bool
+        prompt "used tcp keep context, for create tcp link befor used"
+		depends on HTTP_HELPER
+        default n
+        help
+        This option enables used tcp keep context
+
+

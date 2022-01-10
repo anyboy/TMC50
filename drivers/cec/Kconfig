@@ -1,0 +1,25 @@
+# Kconfig - HDMI CEC configuration options
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+#
+# CEC options
+#
+menuconfig CEC
+	bool
+	prompt "CEC Drivers"
+	default n
+	help
+	Enable CEC Driver Configuration
+
+if CEC
+config CEC_DEV_NAME
+	string "CEC device name"
+	default "CEC_0"
+	help
+	  Specify the CEC device name.
+endif

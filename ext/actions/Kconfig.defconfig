@@ -1,0 +1,308 @@
+#
+# Copyright (c) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+if ACTIONS_SDK
+
+config CPU_TASK_BLOCK_STAT
+	default y
+
+config SYS_CLOCK_TICKS_PER_SEC
+	default 500
+
+config SOC_WKEN_ONOFF_LONG_PRESS_TIMER
+	default 1000
+
+config HEAP_MEM_POOL_SIZE
+	default 0
+
+config NUM_MBOX_ASYNC_MSGS
+	default 20
+
+config MESSAGE_DEBUG
+	default y
+
+config NUM_PIPE_ASYNC_MSGS
+	default 0
+
+config CONTROLLER_HIGH_PRIORITY
+	default -15
+
+config SYSTEM_WORKQUEUE_PRIORITY
+	default -1
+
+config MEDIASRV_PRIORITY
+	default 3
+
+config BTSRV_PRIORITY
+	default 5
+
+config MAIN_THREAD_PRIORITY
+	default 6
+
+config APP_PRIORITY
+	default 10
+
+config CONTROLLER_HIGH_STACKSIZE
+	default 1768
+
+config SYSTEM_WORKQUEUE_STACK_SIZE
+	default 1280
+
+config IDLE_STACK_SIZE
+	default 512
+
+config MEDIASRV_STACKSIZE
+	default 1920
+
+config MAIN_STACK_SIZE
+	default 1536
+
+config APP_STACKSIZE
+	default 1792
+
+config BTSRV_STACKSIZE
+	default 1536
+
+config CONSOLE_SHELL_STACKSIZE
+	default 1024
+
+config ISR_STACK_SIZE
+	default 2048
+
+config TRACE_EVENT_BUFFERSIZE
+	default 4096
+
+config BT_ATT_PREPARE_COUNT
+	default 2
+
+config BT_RX_BUF_LEN
+	default 680
+
+config BT_L2CAP_RX_MTU
+	default 672
+
+config BT_L2CAP_TX_BUF_COUNT
+	default 10
+
+config BT_L2CAP_TX_MTU
+	default 672
+
+config BT_RX_STACK_SIZE
+	default 1536
+
+config BT_HCI_TX_STACK_SIZE
+	default 1024
+
+config BT_HCI_ACL_FLOW_CONTROL
+	default n
+
+config BT_ATT_ENFORCE_FLOW
+	default n
+
+config BT_TWS_US281B
+	default y
+
+# USB device stack
+if USB
+config USB_COMPOSITE_DEVICE_CLASS_NUM
+	default 2
+
+config USB_REQUEST_BUFFER_SIZE
+	default 64
+
+config SYS_LOG_USB_DEVICE_LEVEL
+	default 4
+
+config SYS_LOG_USB_DRIVER_LEVEL
+	default 4
+
+config USB_DEVICE_STRING_DESC_MAX_LEN
+	default 30
+
+# USB app (audio & hid) layer
+config USB_APP_AUDIO_DEVICE_VID
+	default 0x10d6
+
+config USB_APP_AUDIO_DEVICE_PID
+	default 0xb011
+
+config USB_APP_AUDIO_DEVICE_MANUFACTURER
+	default "Actions"
+
+config USB_APP_AUDIO_DEVICE_PRODUCT
+	default "USB Audio & HID"
+
+config USB_APP_AUDIO_DEVICE_SN
+	default "0123456789AB"
+endif # USB
+
+# USB device class: stub
+if USB_DEVICE_STUB
+config SYS_LOG_USB_STUB_LEVEL
+	default 1
+
+config STUB_IN_EP_ADDR
+	default 0x81
+
+config STUB_OUT_EP_ADDR
+	default 0x02
+
+config STUB_EP_MPS
+	default 64
+
+config USB_STUB_DEVICE_MANUFACTURER
+	default "Actions"
+
+config USB_STUB_DEVICE_PRODUCT
+	default "USB-Stub-Dev"
+
+config USB_STUB_DEVICE_SN
+	default "ACTIONS-STUB-000"
+endif # USB_DEVICE_STUB
+
+# USB device class: hid
+if USB_DEVICE_HID
+config USB_HID_DEVICE_IF_NUM
+	default 0
+
+config HID_INTERRUPT_IN_EP_ADDR
+	default 0x81
+
+config HID_INTERRUPT_IN_EP_MPS
+	default 64
+
+config HID_INTERRUPT_OUT
+	default y
+
+config HID_INTERRUPT_OUT_EP_ADDR
+	default 0x01
+
+config HID_INTERRUPT_OUT_EP_MPS
+	default 64
+
+config HID_INTERRUPT_EP_INTERVAL_HS
+	default 0x04
+
+config HID_INTERRUPT_EP_INTERVAL_FS
+	default 0x01
+
+config HID_REPORT_DESC_SIZE
+	default 192
+
+endif # USB_DEVICE_HID
+
+# USB device class: cdc
+
+if USB_CDC_ACM
+
+config CDC_ACM_DESC_STATIC
+	default n
+
+config UART_LINE_CTRL
+	default y
+
+config SYS_LOG_USB_CDC_ACM_LEVEL
+	default 4
+
+config  USB_CDC_ACM_MANUFACTURER
+	default "Actions"
+
+config USB_CDC_ACM_PRODUCT
+	default "CDC-ACM"
+
+config USB_CDC_ACM_SN
+	default "0123456789A"
+
+endif # USB_CDC_ACM
+
+# USB device class: audio
+if USB_AUDIO_CLASS
+config USB_AUDIO_DEVICE_IF_NUM
+	default 1
+
+config USB_AUDIO_DEVICE_MANUFACTURER
+	default "Actions"
+
+config USB_AUDIO_DEVICE_PRODUCT
+	default "USB Audio & HID"
+
+config USB_AUDIO_DEVICE_SN
+	default "0123456789AB"
+
+config USB_AUDIO_SOURCE_IN_EP_ADDR
+	default 0x82
+
+config USB_AUDIO_UPLOAD_CHANNEL_NUM
+	default 1
+
+config USB_AUDIO_SINK_OUT_EP_ADDR
+	default 0x02
+
+config USB_AUDIO_DOWNLOAD_CHANNEL_NUM
+	default 2
+
+config USB_AUDIO_SINK_SAMPLE_FREQ_TYPE
+	default 1
+
+config USB_AUDIO_SINK_RESOLUTION
+	default 16
+
+config USB_AUDIO_CONTROL_UNIT
+	default y
+
+config SUPPORT_HD_AUDIO_PLAY
+	default n
+
+config SUPPORT_USB_AUDIO_SOURCE
+	default n
+
+config USB_AUDIO_SINK_MAINCH_CONFIG
+	default 0x01
+
+config USB_AUDIO_SINK_LOGICALCH01_CONFIG
+	default 0x02
+
+config USB_AUDIO_SINK_LOGICALCH02_CONFIG
+	default 0x02
+endif # USB_AUDIO_CLASS
+
+# USB device class: msc
+if USB_MASS_STORAGE
+config USB_MASS_STORAGE_SHARE_THREAD
+	default y
+
+config MASS_STORAGE_DISK_NAME
+	default "SD"
+
+config MASS_STORAGE_DISK_PDRV
+	default 4
+
+config MASS_STORAGE_IN_EP_ADDR
+	default 0x81
+
+config MASS_STORAGE_OUT_EP_ADDR
+	default 0x02
+
+config SYS_LOG_USB_MASS_STORAGE_LEVEL
+	default 3
+endif # USB_MASS_STORAGE
+
+# USB host stack
+if USB_HOST
+config SYS_LOG_USB_HOST_LEVEL
+	default 3
+endif # USB_HOST
+
+# USB host storage diskio
+config DISK_ACCESS_USB
+	default y
+
+if LEFT_CHANNEL_MUTE || RIGHT_CHANNEL_MUTE
+config MEDIA_EFFECT_OUTMODE
+	default 2
+endif
+
+endif

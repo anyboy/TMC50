@@ -1,0 +1,16 @@
+obj-$(CONFIG_FILE_SYSTEM) += fs/
+obj-$(CONFIG_USB) += usb/
+obj-$(CONFIG_USB_HOST) += usb/
+obj-$(CONFIG_BT) += bluetooth/
+obj-$(CONFIG_NET_BUF) += net/
+obj-$(CONFIG_CONSOLE_SHELL) += shell/
+obj-$(CONFIG_CONSOLE_PULL) += console/
+obj-$(CONFIG_DISK_ACCESS) += disk/
+obj-$(CONFIG_CPLUSPLUS) += cpp/
+obj-$(CONFIG_SYSTEM_RECOVERY) += recovery/
+obj-y += logging/
+obj-y += debug/
+obj-y += tracing/
+obj-$(CONFIG_BTSTACK) += btstack/
+obj-$(CONFIG_PARTITION) += partition/
+obj-$(CONFIG_FIRMWARE_VERSION) += fw_version/

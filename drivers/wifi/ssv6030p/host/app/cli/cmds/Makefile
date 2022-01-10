@@ -1,0 +1,1 @@
+obj-$(CONFIG_WIFI_SSV6030P) += cli_cmd_wifi.o cli_cmd_sys.o cli_cmd_net.o cli_cmd_soc.o cli_cmd.o

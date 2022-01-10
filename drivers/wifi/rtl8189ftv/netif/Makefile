@@ -1,0 +1,1 @@
+obj-y += rtl8189ftv.o

@@ -1,0 +1,9 @@
+samples/bt_box/app_conf/dvb_cascade_285a_with_dsp/prj.conf
+boards/mips/ats2859_dvb/EATS2859.FW
+boards/mips/ats2859_dvb/ats2859_dvb_defconfig
+boards/mips/ats2859_dvb/board.c
+boards/mips/ats2859_dvb/board.h
+ext/actions/component/media/media_mem.c
+samples/bt_box/app_conf/dvb_cascade_285a_with_dsp/prj.conf
+samples/bt_box/src/att/att_patterns/group1/gpio/ap_autotest_gpio_sub.c
+scripts/support/actions/prebuilt/woodpecker/common/bin/fw_maker_ext.cfg

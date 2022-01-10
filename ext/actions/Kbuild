@@ -1,0 +1,6 @@
+obj-$(CONFIG_ACTIONS_SDK_PORTING)+= porting/
+obj-$(CONFIG_ACTIONS_SDK) += private/
+obj-$(CONFIG_ACTIONS_SDK) += library/
+obj-$(CONFIG_ACTIONS_COMPONENT_FUNCTION) += component/
+#obj-$(CONFIG_ACTIONS_EXTERNAL_LIBRARY) += external/
+

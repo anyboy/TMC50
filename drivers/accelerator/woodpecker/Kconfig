@@ -1,0 +1,14 @@
+# Kconfig - Actions Woodpecker SoC Audio Accelerator configuration options
+#
+#
+# Copyright (c) 2020 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig ACCELERATOR_ACTS_WOODPECKER
+	bool "Audio Accelerator driver for Actions Woodpecker SoC"
+	default n
+	depends on SOC_SERIES_WOODPECKER || SOC_SERIES_WOODPECKERFPGA
+	help
+	Actions Woodpecker SoC audio accelerator driver.

@@ -1,0 +1,20 @@
+menuconfig BTSTACK
+	bool "BTstack support"
+	default n
+	help
+	  This option enables the BTstack Bluetooth stack.
+
+config BT_DEVICE_NAME
+	string "Bluetooth device name"
+	default "Zephyr"
+	depends on BTSTACK
+	help
+	  Bluetooth device name. Name can be up to 248 bytes long (excluding
+	  NULL termination). Can be empty string.
+
+config BT_BLUEDROID
+	bool "BT BLUEDROID support"
+	default "Zephyr"
+	depends on BTSTACK
+	help
+	 	This option enables the BTstack bluedroid.

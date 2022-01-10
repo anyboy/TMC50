@@ -1,0 +1,94 @@
+# Kconfig - Actions media player
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig MEDIA
+	bool
+	prompt "media"
+	depends on ACTIONS_COMPONENT_FUNCTION
+	select MEDIA_PLAYER
+	default n
+	help
+	This option enables actions media
+
+config MEDIA_PLAYER
+	bool
+	prompt "media player Support"
+	depends on MEDIA
+	select MEDIA_SERVICE
+	select STREAM
+	select RINGBUFF_STREAM
+	default n
+	help
+	This option enables actions media player
+
+config MEDIA_EFFECT
+	bool
+	prompt "media effect Support"
+	depends on MEDIA_PLAYER
+	default n
+	help
+	This option enables actions media effect
+
+config MEDIA_EFFECT_OUTMODE
+	int
+	prompt "media effect output mode Support"
+	depends on MEDIA_PLAYER
+	default 0
+	help
+	This option enables actions media output mode 
+
+config MUSIC_EFFECT
+	bool
+	prompt "music effect Support"
+	depends on MEDIA_PLAYER
+	select MEDIA_EFFECT
+	select MUSIC_DAE
+	select MUSIC_DAE_FADE
+	default n
+	help
+	This option enables actions music effect
+
+config MUSIC_DRC_EFFECT
+	bool
+	prompt "music drc effect Support"
+	depends on MUSIC_EFFECT
+	select MEDIA_EFFECT
+	default n
+	help
+	This option enables actions music drc effect
+
+config LCMUSIC_TWS_DRC_EFFECT
+	bool
+	prompt "music drc effect Support"
+	depends on MUSIC_EFFECT
+	select MEDIA_EFFECT
+	default n
+	help
+	This option enables actions lcmusic music drc effect
+
+config VOICE_EFFECT
+	bool
+	prompt "voice effect Support"
+	depends on MEDIA_EFFECT
+	default n
+	help
+	This option enables actions voice effect
+
+config AEC_TAIL_LENGTH
+	int
+	prompt "AEC tail length config"
+	default 48
+	help
+	This option set AEC tail length config
+
+config TWS_A2DP_BITPOOL
+	int
+	prompt "local tws a2dp max bit pool"
+	default 53
+	help
+	This option set local tws a2dp max bit pool

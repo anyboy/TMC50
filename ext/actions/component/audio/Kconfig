@@ -1,0 +1,30 @@
+# Kconfig - Actions audio
+
+#
+# Copyright (c) 2016 Actions Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig AUDIO
+	bool
+	prompt "Audio"
+	depends on ACTIONS_COMPONENT_FUNCTION
+	select VOLUEM_MANAGER
+	default n
+	help
+	This option enables actions audio
+	
+config VOLUEM_MANAGER
+	bool
+	prompt "actions volume manager"
+	depends on AUDIO
+	default n
+	help
+	This option enables actions actions volume manager.
+
+
+
+
+
+

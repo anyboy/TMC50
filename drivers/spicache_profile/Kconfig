@@ -1,0 +1,13 @@
+# Kconfig - Actions Bluetooth SoC platform configuration options
+
+#
+# Copyright (c) 2019 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config SPICACHE_PROFILE
+	bool "Enable SPI cache profile"
+	default n
+	help
+	  Enable SPI cache profile for Andes SoC

@@ -1,0 +1,75 @@
+
+# Kconfig - ACTIONS primitive options for sdk version 2.0
+
+#
+# Copyright (c) 2015 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+config AUDIO_INPUT_APP
+	bool
+	prompt "Audio Input App Support"
+	depends on MEDIA_PLAYER
+	select STREAM
+	select RINGBUFF_STREAM
+	default n
+	help
+	This option enables or disable the audio input app.
+
+config SPDIF_IN_APP
+	bool
+	prompt "Spdif In App Support"
+	default n
+	depends on AUDIO_INPUT_APP
+	select OUTPUT_RESAMPLE
+	select OUTPUT_RESAMPLE_SW
+	help
+	This option enables or disable the spdif in app.
+
+config I2SRX_IN_APP
+	bool
+	prompt "i2srx In App Support"
+	default n
+	depends on AUDIO_INPUT_APP
+	select AUDIO_IN_I2SRX0_SUPPORT
+	select OUTPUT_RESAMPLE
+	help
+	This option enables or disable the i2srx in app.
+
+config LINE_IN_APP
+	bool
+	prompt "Line In App Support"
+	default n
+	depends on AUDIO_INPUT_APP
+	help
+	This option enables or disable the line in app.
+
+
+config MIC_IN_APP
+	bool
+	prompt "MIC In App Support"
+	default n
+	depends on AUDIO_INPUT_APP
+	select OUTPUT_RESAMPLE
+	help
+	This option enables or disable the mic in app.
+
+#soundbar audioin config
+config SOUNDBAR_AUDIOIN_STAY
+	bool
+	prompt "Audio Input App Would Not Exit Even No Data"
+	default n
+	depends on AUDIO_INPUT_APP
+	help
+	This option enables or disable audioin app stays to wait for data

@@ -1,0 +1,1 @@
+cmd_lib/utils/source/sys_common/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o lib/utils/source/sys_common/built-in.o lib/utils/source/sys_common/sys_usleep.o 

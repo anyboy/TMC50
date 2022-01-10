@@ -1,0 +1,2 @@
+obj-$(CONFIG_WIFI_SSV6030P) += ssv6030p.o
+obj-$(CONFIG_WIFI_SSV6030P) += host/

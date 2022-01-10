@@ -1,0 +1,7 @@
+
+if BOARD_ATS2859_DVB
+
+config BOARD
+	default ats2859_dvb
+
+endif

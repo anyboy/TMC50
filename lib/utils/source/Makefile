@@ -1,0 +1,9 @@
+obj-$(CONFIG_ACTIONS_TRACE) += trace/
+obj-$(CONFIG_ACTS_RING_BUFFER) += acts_ringbuf/
+obj-$(CONFIG_ACTS_TRANSCODE) += transcode/
+obj-$(CONFIG_STREAM) += stream/
+obj-$(CONFIG_ITERATOR) += iterator/
+obj-y += sys_common/
+obj-y += crc/
+obj-y += energy_statistics/
+obj-y += cbuf/

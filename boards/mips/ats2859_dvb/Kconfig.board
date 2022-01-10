@@ -1,0 +1,4 @@
+
+config BOARD_ATS2859_DVB
+	bool "ATS2859 Develop Board"
+	depends on SOC_ATS2859

@@ -1,0 +1,4 @@
+obj-y += libc/
+obj-$(CONFIG_MEMORY) += memory/
+obj-$(CONFIG_ACTIONS_UTILS) += utils/
+obj-$(CONFIG_JSON_LIBRARY) += json/

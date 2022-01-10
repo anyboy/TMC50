@@ -1,0 +1,2 @@
+config SOC_ATS2855
+	bool "ats2855"

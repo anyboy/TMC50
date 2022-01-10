@@ -1,0 +1,26 @@
+# Kconfig - Actions SoC PWM configuration options
+#
+#
+# Copyright (c) 2018 Actions Semiconductor Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+menuconfig PWM_ACTS
+	bool "Actions SoC PWM driver"
+	depends on PWM
+	default n
+	help
+	  This option enables the PWM driver for Actions SoC.
+	  Say y if you wish to use PWM port on Actions SoC.
+
+if PWM_ACTS
+
+config PWM_ACTS_DEV_NAME
+	string "Actions SoC PWM Device Name"
+	depends on PWM_ACTS
+	default "PWM_0"
+	help
+	  Specify the device name for the Actions SoC PWM driver.
+
+endif # PWM_ACTS
