@@ -1,1 +1,0 @@
-cmd_drivers/audio/phy_woodpecker/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/audio/phy_woodpecker/built-in.o drivers/audio/phy_woodpecker/phy_audio_dac.o drivers/audio/phy_woodpecker/phy_audio_i2stx.o drivers/audio/phy_woodpecker/phy_audio_adc.o drivers/audio/phy_woodpecker/phy_audio_i2srx.o 

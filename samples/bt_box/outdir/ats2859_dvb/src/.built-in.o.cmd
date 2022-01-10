@@ -1,1 +1,0 @@
-cmd_src/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o src/built-in.o src/main/built-in.o src/btmusic/built-in.o src/btcall/built-in.o src/tws/built-in.o src/ota/built-in.o src/tool/built-in.o src/att/built-in.o src/usound/built-in.o src/card_reader/built-in.o 

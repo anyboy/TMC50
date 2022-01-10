@@ -1,1 +1,0 @@
-cmd_src/att/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o src/att/built-in.o src/att/ap_autotest_main.o src/att/ap_autotest_loop.o src/att/ap_autotest_read_atf_file.o src/att/ap_autotest_stub_comm.o 

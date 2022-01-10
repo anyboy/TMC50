@@ -1,1 +1,0 @@
-cmd_drivers/input/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/input/built-in.o drivers/input/adckey_acts.o drivers/input/onoff_key_acts.o 

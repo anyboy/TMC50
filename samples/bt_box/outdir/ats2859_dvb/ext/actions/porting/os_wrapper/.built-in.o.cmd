@@ -1,1 +1,0 @@
-cmd_ext/actions/porting/os_wrapper/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o ext/actions/porting/os_wrapper/built-in.o ext/actions/porting/os_wrapper/os_wrapper.o ext/actions/porting/os_wrapper/user_work_q.o 

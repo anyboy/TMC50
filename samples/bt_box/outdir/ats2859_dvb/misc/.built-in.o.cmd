@@ -1,1 +1,0 @@
-cmd_misc/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o misc/built-in.o misc/printk.o misc/print_buffer.o misc/sprintk.o misc/printk_al.o misc/generated/built-in.o 

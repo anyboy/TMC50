@@ -1,1 +1,0 @@
-cmd_src/card_reader/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o src/card_reader/built-in.o src/card_reader/card_reader_main.o src/card_reader/card_reader_view.o 

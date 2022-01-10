@@ -1,1 +1,0 @@
-cmd_ext/fs/fat/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o ext/fs/fat/built-in.o ext/fs/fat/ff.o ext/fs/fat/diskio.o ext/fs/fat/option/syscall.o ext/fs/fat/option/unicode.o 

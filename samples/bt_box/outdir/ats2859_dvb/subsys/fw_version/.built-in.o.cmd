@@ -1,1 +1,0 @@
-cmd_subsys/fw_version/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o subsys/fw_version/built-in.o subsys/fw_version/fw_version.o 

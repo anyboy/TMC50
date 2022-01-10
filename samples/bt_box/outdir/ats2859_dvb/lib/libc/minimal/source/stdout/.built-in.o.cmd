@@ -1,1 +1,0 @@
-cmd_lib/libc/minimal/source/stdout/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o lib/libc/minimal/source/stdout/built-in.o lib/libc/minimal/source/stdout/fprintf.o lib/libc/minimal/source/stdout/prf.o lib/libc/minimal/source/stdout/sprintf.o lib/libc/minimal/source/stdout/stdout_console.o 

@@ -1,1 +1,0 @@
-cmd_subsys/usb/class/hid/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o subsys/usb/class/hid/built-in.o subsys/usb/class/hid/core.o 

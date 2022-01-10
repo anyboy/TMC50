@@ -1,1 +1,0 @@
-cmd_drivers/dma/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/dma/built-in.o drivers/dma/com_vdma_woodpecker.o drivers/dma/vdma_acts_woodpecker.o 

@@ -1,1 +1,0 @@
-cmd_lib/utils/source/trace/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o lib/utils/source/trace/built-in.o lib/utils/source/trace/trace_impl.o lib/utils/source/trace/trace_os.o lib/utils/source/trace/trace_thread.o lib/utils/source/trace/trace_vsnprintf.o 

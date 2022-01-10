@@ -1,1 +1,0 @@
-cmd_src/tool/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o src/tool/built-in.o src/tool/tool_app_main.o src/tool/tool_att.o 

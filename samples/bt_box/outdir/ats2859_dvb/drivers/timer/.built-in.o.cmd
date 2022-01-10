@@ -1,1 +1,0 @@
-cmd_drivers/timer/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/timer/built-in.o drivers/timer/acts_timer.o drivers/timer/hrtimer_acts.o drivers/timer/acts_timer_capture.o drivers/timer/sys_clock_init.o 
