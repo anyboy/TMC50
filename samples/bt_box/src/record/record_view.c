@@ -47,8 +47,8 @@ static int _recorder_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	{
 		SYS_LOG_INF("DELETE\n");
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 	}
@@ -137,8 +137,8 @@ void recorder_display_record_pause(struct recorder_app_t *record)
 	seg_led_display_icon(SLED_PAUSE, true);
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
 }
 
@@ -194,8 +194,8 @@ void recplayer_display_icon_pause(void)
 	seg_led_display_icon(SLED_PLAY, false);
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
 
 }

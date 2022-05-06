@@ -64,6 +64,9 @@ typedef enum
 
 	MSG_SYS_EVENT,
 
+	MSG_DISCONNECTED_BT,
+
+	MSG_WAKE_UP_BT,
 	/* service defined message */
 	MSG_SRV_MESSAGE_START           = 128,
 

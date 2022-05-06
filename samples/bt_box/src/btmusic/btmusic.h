@@ -82,6 +82,8 @@ enum {
 
 	MSG_BT_PLAY_SEEKBW_STOP,
 
+	MSG_BT_PLAY_VOL_SET,
+
 };
 
 

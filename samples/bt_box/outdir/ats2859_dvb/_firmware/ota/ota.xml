@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ota_firmware>
+	<firmware_version>
+		<board_name>ats2859_dvb</board_name>
+		<version_name>2.00_2204182020</version_name>
+		<version_code>0x20000</version_code>
+		</firmware_version>
+<partitions>
+	<partitionsNum>4</partitionsNum>
+	<partition>
+		<type>BOOT</type>
+		<name>fw0_boot</name>
+		<file_id>1</file_id>
+		<file_name>mbrec.bin</file_name>
+		<file_size>0x1000</file_size>
+		<checksum>0x3c94f6e1</checksum>
+	</partition>
+	<partition>
+		<type>SYS_PARAM</type>
+		<name>sys_param0</name>
+		<file_id>2</file_id>
+		<file_name>param.bin</file_name>
+		<file_size>0x200</file_size>
+		<checksum>0xae3eccb</checksum>
+	</partition>
+	<partition>
+		<type>SYSTEM</type>
+		<name>fw0_sys</name>
+		<file_id>4</file_id>
+		<file_name>zephyr.bin</file_name>
+		<file_size>0xbbfa0</file_size>
+		<checksum>0x96211e42</checksum>
+	</partition>
+	<partition>
+		<type>DATA</type>
+		<name>fw0_sdfs</name>
+		<file_id>5</file_id>
+		<file_name>sdfs.bin</file_name>
+		<file_size>0x11f80</file_size>
+		<checksum>0x1ad8d2ae</checksum>
+	</partition>
+	</partitions>
+	</ota_firmware>

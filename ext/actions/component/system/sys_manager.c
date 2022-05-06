@@ -30,6 +30,8 @@
 #include <fm_manager.h>
 #endif
 
+
+
 void system_ready(void)
 {
 	struct sys_monitor_t *sys_monitor = sys_monitor_get_instance();
@@ -89,8 +91,10 @@ void system_init(void)
 #endif
 
 #ifdef CONFIG_UI_MANAGER
-	ui_manager_init();
+	ui_manager_init();			//灯的UI设计
 #endif
+
+	//led_init();  //打印测试
 
 #ifdef CONFIG_HOTPLUG_MANAGER
 	hotplug_manager_init();

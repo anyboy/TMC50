@@ -1,0 +1,1 @@
+cmd_drivers/rtc/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/rtc/built-in.o drivers/rtc/rtc_lib.o drivers/rtc/rtc_acts.o 

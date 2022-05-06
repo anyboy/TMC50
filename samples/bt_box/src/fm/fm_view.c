@@ -41,8 +41,8 @@ static int _fm_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 		tts_manager_wait_finished(true);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 
@@ -113,8 +113,8 @@ void fm_view_show_station_num(u16_t num)
 
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
-	led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
+	//led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
+	//led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
 #endif
 	fm_view_play_freq(fm->current_freq);
 
@@ -213,8 +213,8 @@ void fm_view_show_play_status(bool status)
 		led_manager_set_breath(0, NULL, OS_FOREVER, NULL);
 		led_manager_set_breath(1, NULL, OS_FOREVER, NULL);
 	} else {
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	}
 #endif
 }
@@ -222,8 +222,8 @@ void fm_view_show_play_status(bool status)
 void fm_view_show_try_listen(void)
 {
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
 }
 

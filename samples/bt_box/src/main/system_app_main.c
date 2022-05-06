@@ -20,6 +20,8 @@
 #include <property_manager.h>
 #include "soc_watchdog.h"
 
+#include "interactive.h"
+
 #ifdef CONFIG_PLAYTTS
 #include "tts_manager.h"
 #endif
@@ -201,7 +203,10 @@ void main(void)
 
 	system_library_version_dump();
 
-	system_init();
+	system_init();				//系统初始化
+
+	//led_init();  //
+	
 
 	system_audio_policy_init();
 
@@ -317,9 +322,11 @@ void main(void)
 	ble_test_init();
 #endif
 
-	//init
+	//串口init
 	system_app_uart_init();
-
+	led_thread_creat();
+	//
+	//led_start(); //启用灯
 	while (1) {
 		main_msg_proc(NULL, NULL, NULL);
 	}

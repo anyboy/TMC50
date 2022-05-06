@@ -58,6 +58,7 @@ struct bt_manager_info_t {
 };
 
 static struct bt_manager_info_t bt_mgr_info;
+//struct bt_manager_info_t bt_mgr_info;
 
 static const struct bt_scan_parameter default_scan_param = {
 	.tws_limit_inquiry = 1,		/* 0: Normal inquiry,  other: limit inquiry */
@@ -473,6 +474,7 @@ int bt_manager_get_connected_dev_num(void)
 
 //output status to uart
 extern void system_app_uart_tx(u8_t *buf, size_t len);
+extern int bt_connect_flag;   // 0=normal   1=connect   2=disconnect 
 
 int bt_manager_set_status(int state)
 {
@@ -506,7 +508,8 @@ int bt_manager_set_status(int state)
 
 		{
 			u8_t inno_bt_con_code = 0xc1;
-			system_app_uart_tx(&inno_bt_con_code, 1);
+			system_app_uart_tx(&inno_bt_con_code, 1);  //蓝牙链接通知3607
+			bt_connect_flag =1;
 		}
 
 		return 0;
@@ -525,7 +528,8 @@ int bt_manager_set_status(int state)
 
 				{
 					u8_t inno_bt_con_code = 0xc0;
-					system_app_uart_tx(&inno_bt_con_code, 1);
+					system_app_uart_tx(&inno_bt_con_code, 1);	//蓝牙断开通知3607
+					bt_connect_flag =2;
 				}
 			}
 		}
@@ -771,4 +775,36 @@ void bt_manager_dump_info(void)
 
 	printk("\n");
 	btif_dump_brsrv_info();
+}
+
+
+void bt_manager_disconnect_phones(void)
+{
+	int i;
+
+	if(bt_manager_get_connected_dev_num()==0)
+		return;
+	
+	bt_manager_dump_info();
+
+/*
+	SYS_LOG_INF("bt_manager info\n");
+	printk("num %d, tws_mode %d, bt_state %d, playing %d\n",bt_mgr_info.connected_phone_num,
+		bt_mgr_info.tws_mode,bt_mgr_info.bt_state, bt_mgr_info.playing);
+*/
+	for(i = 0;i < MAX_MGR_DEV; i++)
+	{
+		if(bt_mgr_info.dev[i].used)
+		{
+			/*
+			printk("Dev name %s, tws %d (%d,%d,%d,%d,%d,%d)\n",bt_mgr_info.dev[i].name,bt_mgr_info.dev[i].is_tws,
+				bt_mgr_info.dev[i].notify_connected, bt_mgr_info.dev[i].a2dp_connected, bt_mgr_info.dev[i].avrcp_connected,
+				bt_mgr_info.dev[i].hf_connected, bt_mgr_info.dev[i].spp_connected, bt_mgr_info.dev[i].hid_connected);
+			*/
+			if(bt_mgr_info.dev[i].a2dp_connected == 1)
+			{
+				bt_manager_br_disconnect(&bt_mgr_info.dev[i].addr);
+			}
+		}
+	}
 }

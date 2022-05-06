@@ -15,6 +15,12 @@
 #include <bt_manager.h>
 #include "app_ui.h"
 #include "system_app.h"
+#include "led_manager.h"
+
+//#include "interactive.h"
+extern int bt_connect_flag;   // 0=normal   1=connect   2=disconnect
+extern int wakeup_disconnect_flag;
+
 #ifdef CONFIG_USB_MASS_STORAGE
 #ifdef CONFIG_SYS_WAKELOCK
 #include <sys_wakelock.h>
@@ -33,6 +39,8 @@ extern void recorder_service_start_stop(u8_t is_stop);
 extern void recorder_service_check_disk(const char *disk);
 extern void alarm_entry_exit(u8_t force_exit);
 extern int alarm_input_event_proc(struct app_msg *msg);
+extern void bt_manager_disconnect_phones(void);
+extern void bt_show(bool enable);
 #ifdef CONFIG_GMA_APP
 extern uint8_t gma_dev_sent_record_start_stop(uint8_t cmd);
 #endif
@@ -54,6 +62,36 @@ void system_key_event_handle(struct app_msg *msg)
 		/*模式切换*/
 		app_switch((char *)msg->ptr, APP_SWITCH_NEXT, false);
 		break;
+	
+	case MSG_DISCONNECTED_BT:
+	{
+		//必须在连接上的时候断开
+		if(wakeup_disconnect_flag==1)
+		{
+			SYS_LOG_INF("disconnected\n");
+			bt_manager_disconnect_phones();		//断开蓝牙
+			bt_connect_flag =2;
+			bt_show(true);     //可见
+			//led_manager_set_blink(0, 500, 500, OS_MINUTES(1), LED_START_STATE_OFF, NULL);	//断开灯的操作
+		}
+
+		break;
+	}
+
+	case MSG_WAKE_UP_BT:
+	{
+		//必须在断开之后唤醒
+		if(wakeup_disconnect_flag==0)
+		{
+			SYS_LOG_INF("MSG_WAKE_UP_BT\n");
+			bt_connect_flag =2;
+			bt_show(true);     //可见
+		}
+
+
+		break;
+	}
+
 	case MSG_ENTER_PAIRING_MODE:
 		/* Design for entering pairing mode, wait to connect by phone */
 		break;

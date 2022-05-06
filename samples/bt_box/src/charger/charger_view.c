@@ -29,8 +29,8 @@ static int _charger_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 		#endif
 		#endif
 		#ifdef CONFIG_LED_MANAGER
-			led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-			led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+			// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+			// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 		#endif
             break;
         }

@@ -117,7 +117,7 @@ int asdp_cmd_h2d_service_negotiation(u8_t* tlv_list, u16_t len)
 }
 
 
-
+/*获取蓝牙状态*/
 u32_t asdp_dm_get_bt_status(void)
 {
 	int ret = DM_BT_STATUS_NONE;

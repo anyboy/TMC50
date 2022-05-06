@@ -1,0 +1,1 @@
+cmd_subsys/usb/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o subsys/usb/built-in.o subsys/usb/usb_device.o subsys/usb/class/built-in.o subsys/usb/usb_host.o subsys/usb/host/built-in.o 

@@ -17,6 +17,9 @@
 #include <resource.h>
 #endif
 
+//#include "interactive.h"
+extern int bt_connect_flag;   // 0=normal   1=connect   2=disconnect 
+
 static int _btmusic_get_status(void)
 {
 	return BT_STATUS_A2DP_ALL;
@@ -47,8 +50,8 @@ static int _btmusic_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	{
 		SYS_LOG_INF(" DELETE\n");
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		//led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		//led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 
 		break;
@@ -61,8 +64,10 @@ static int _btmusic_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	return 0;
 }
 
+//蓝牙链接
 void btmusic_view_show_connected(void)
 {
+	//printk("led\n");
 #ifdef CONFIG_SEG_LED_MANAGER
 	seg_led_manager_clear_screen(LED_CLEAR_ALL);
 	seg_led_display_string(SLED_NUMBER1, " bL ", true);
@@ -74,13 +79,17 @@ void btmusic_view_show_connected(void)
 #endif
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	printk("led_on\n");
+	////led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);		//长亮
+	//led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
+	bt_connect_flag =1;
 }
 
+//蓝牙断开
 void btmusic_view_show_disconnected(void)
 {
+	//printk("led\n");
 #ifdef CONFIG_SEG_LED_MANAGER
 	seg_led_display_string(SLED_NUMBER2, "bL", true);
 	seg_led_display_string(SLED_NUMBER4, " ", false);
@@ -94,9 +103,12 @@ void btmusic_view_show_disconnected(void)
 #endif
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
-	led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
+	printk("led_off\n");
+	
+	////led_manager_set_blink(0, 500, 500, OS_MINUTES(1), LED_START_STATE_OFF, NULL);		//闪烁
+	//led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
 #endif
+	bt_connect_flag =2;
 }
 
 void btmusic_view_show_play_paused(bool playing)
@@ -110,8 +122,8 @@ void btmusic_view_show_play_paused(bool playing)
 		led_manager_set_breath(0, NULL, OS_FOREVER, NULL);
 		led_manager_set_breath(1, NULL, OS_FOREVER, NULL);
 	} else {
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	}
 #endif
 }
@@ -181,9 +193,12 @@ void btmusic_view_init(void)
 	#endif
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
-		led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
+		printk("led_off\n");
+		
+		////led_manager_set_blink(0, 500, 500, OS_MINUTES(1), LED_START_STATE_OFF, NULL);
+		//led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
 	#endif
+		bt_connect_flag =2;
 	} else {
 	#ifdef CONFIG_SEG_LED_MANAGER
 		seg_led_display_string(SLED_NUMBER2, "bL", true);
@@ -197,8 +212,8 @@ void btmusic_view_init(void)
 		seg_led_display_icon(SLED_PLAY, false);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	#endif
 	}
 	/**don't notify tts when switch from btcall gma is the same*/

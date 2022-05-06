@@ -42,6 +42,8 @@ typedef struct
 	u8_t     state;
 	led_pixel_value    pixel_value;
 	struct device *op_dev;
+	//gpio blink
+	struct k_timer tmr;
 }led_dot;
 
 typedef struct
@@ -51,6 +53,18 @@ typedef struct
 }led_panel;
 
 static led_panel *led = NULL;
+
+static void _gpio_led_blink_tmr_func(struct k_timer *tmr)
+{
+	led_dot *dot = CONTAINER_OF(tmr, led_dot, tmr);
+
+	dot->state = !dot->state;
+	if (dot->state == 0) {
+		gpio_pin_write(dot->op_dev, dot->led_pin, !(dot->active_level));
+	} else {
+		gpio_pin_write(dot->op_dev, dot->led_pin, dot->active_level);
+	}
+}
 
 static int led_display_init(struct device *dev)
 {
@@ -71,13 +85,15 @@ static int led_display_init(struct device *dev)
 		dot->led_id = ledmaps[i].led_id;
 		dot->active_level = ledmaps[i].active_level;
 		dot->led_pwm =  ledmaps[i].led_pwm;
-		if (dot->led_pwm) {
+		if (dot->led_pwm != 0xff) {
 		#ifdef CONFIG_PWM
 			dot->op_dev = device_get_binding(CONFIG_PWM_ACTS_DEV_NAME);
         #endif
 		} else {
 			dot->op_dev = device_get_binding(CONFIG_GPIO_ACTS_DEV_NAME);
 			gpio_pin_configure(dot->op_dev, dot->led_pin, GPIO_DIR_OUT | GPIO_POL_INV);
+
+			k_timer_init(&dot->tmr, _gpio_led_blink_tmr_func, NULL);
 		}
 	    if (!dot->op_dev) {
 			SYS_LOG_ERR("cannot found dev gpio \n");
@@ -123,7 +139,7 @@ int led_draw_pixel(int led_id, u32_t color, pwm_breath_ctrl_t *ctrl)
 
 	switch (pixel.op_code) {
 	case LED_OP_OFF:
-		if (dot->led_pwm) {
+		if (dot->led_pwm!= 0xff) {
 		#ifdef CONFIG_PWM
 			if (dot->active_level) {
 				pwm_pin_set_cycles(dot->op_dev, dot->led_pwm, MAX_DUTY, 0, START_VOLTAGE_HIGH);
@@ -133,11 +149,13 @@ int led_draw_pixel(int led_id, u32_t color, pwm_breath_ctrl_t *ctrl)
 		#endif
 		} else {
 			gpio_pin_write(dot->op_dev, dot->led_pin, !(dot->active_level));
+
+			k_timer_stop(&dot->tmr);
 		}
 
 		break;
 	case LED_OP_ON:
-		if (dot->led_pwm) {
+		if (dot->led_pwm!= 0xff) {
 		#ifdef CONFIG_PWM
 			if (dot->active_level) {
 				pwm_pin_set_cycles(dot->op_dev, dot->led_pwm, MAX_DUTY, MAX_DUTY, START_VOLTAGE_HIGH);
@@ -147,22 +165,34 @@ int led_draw_pixel(int led_id, u32_t color, pwm_breath_ctrl_t *ctrl)
 		#endif
 		} else {
 			gpio_pin_write(dot->op_dev, dot->led_pin, dot->active_level);
+
+			k_timer_stop(&dot->tmr);
 		}
 
 		break;
 	case LED_OP_BREATH:
-		if (dot->led_pwm) {
+		if (dot->led_pwm!= 0xff) {
 		#ifdef CONFIG_PWM
 			pwm_set_breath_mode(dot->op_dev, dot->led_pwm, ctrl);
 		#endif
+		} else {
+			SYS_LOG_ERR("gpio led don't support breath\n");
 		}
 
 		break;
 	case LED_OP_BLINK:
-		if (dot->led_pwm) {
+		if (dot->led_pwm!= 0xff) {
 		#ifdef CONFIG_PWM
 			pwm_pin_set_usec(dot->op_dev, dot->led_pwm, dot->pixel_value.period * 1000, dot->pixel_value.pulse * 1000, pixel.start_state);
 		#endif
+		} else {
+			if (pixel.start_state == 0) {
+				gpio_pin_write(dot->op_dev, dot->led_pin, !(dot->active_level));
+			} else {
+				gpio_pin_write(dot->op_dev, dot->led_pin, dot->active_level);
+			}
+			dot->state = pixel.start_state;
+			k_timer_start(&dot->tmr, pixel.pulse, pixel.pulse);
 		}
 	}
 #endif

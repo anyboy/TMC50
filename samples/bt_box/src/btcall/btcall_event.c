@@ -185,6 +185,16 @@ void btcall_bt_event_proc(struct app_msg *msg)
 		if (btcall && btcall->player) {
 			media_player_set_volume(btcall->player, msg->value, msg->value);
 		}
+
+		//notify dsp of volume
+		{
+			extern void system_app_uart_tx(u8_t *buf, size_t len);
+			u8_t bt_vol = (u8_t)msg->value;
+
+			//encap
+			bt_vol += 0x10;
+			system_app_uart_tx(&bt_vol, 1);
+		}
 		break;
 	}
 
@@ -309,6 +319,11 @@ void btcall_input_event_proc(struct app_msg *msg)
 	}
 	case MSG_BT_HID_START:
 	{
+		break;
+	}
+	case MSG_BT_CALL_VOL_SET:
+	{
+		system_volume_set(AUDIO_STREAM_VOICE,msg->value,false);
 		break;
 	}
 	}

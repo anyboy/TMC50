@@ -62,8 +62,8 @@ static int _lcmusic_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	{
 		SYS_LOG_INF("DELETE\n");
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 	}
@@ -149,8 +149,8 @@ void lcmusic_display_icon_pause(void)
 	seg_led_display_icon(SLED_PAUSE, true);
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
 }
 

@@ -1,0 +1,169 @@
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           MIPS R3000
+  Version:                           0x1
+  Entry point address:               0xbf000030
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          6172420 (bytes into file)
+  Flags:                             0x74001001, noreorder, o32, mips16, mips32r2
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         13
+  Size of section headers:           40 (bytes)
+  Number of section headers:         109
+  Section header string table index: 108
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] text              PROGBITS        bf000000 0001e0 085a4c 00  AX  0   0  8
+  [ 2] .module_api_entry PROGBITS        bf085a4c 085c2c 0002c8 00  AX  0   0  4
+  [ 3] .FEC_LOWBAND_RCOD PROGBITS        bf085d14 085ef4 000054 00  AX  0   0  4
+  [ 4] .FEC_LOWBAND_BANK PROGBITS        bf085d68 085f48 00009c 00  AX  0   0  4
+  [ 5] .FEC_LOWBAND_RCOD PROGBITS        bf085e04 085fe4 00004c 00  AX  0   0  4
+  [ 6] .FEC_LOWBAND_RCOD PROGBITS        bf085e50 086030 000058 00  AX  0   0  4
+  [ 7] .FEC_LOWBAND_RCOD PROGBITS        bf085ea8 086088 000374 00  AX  0   0  4
+  [ 8] .FEC_LOWBAND_RCOD PROGBITS        bf08621c 0863fc 0000a0 00  AX  0   0  4
+  [ 9] .FEC_LOWBAND_RCOD PROGBITS        bf0862bc 08649c 00004c 00  AX  0   0  4
+  [10] .FEC_LOWBAND_RCOD PROGBITS        bf086308 0864e8 00017c 00  AX  0   0  4
+  [11] .FEC_LOWBAND_RCOD PROGBITS        bf086484 086664 000038 00  AX  0   0  4
+  [12] .FEC_LOWBAND_RCOD PROGBITS        bf0864bc 08669c 000040 00  AX  0   0  4
+  [13] .FEC_LOWBAND_RCOD PROGBITS        bf0864fc 0866dc 000250 00  AX  0   0  4
+  [14] .FEC_LOWBAND_RCOD PROGBITS        bf08674c 08692c 00025c 00  AX  0   0  4
+  [15] .FEC_LOWBAND_BANK PROGBITS        bf0869a8 086b88 000254 00  AX  0   0  4
+  [16] .FEC_LOWBAND_RCOD PROGBITS        bf086bfc 086ddc 000018 00  AX  0   0  4
+  [17] .FEC_LOWBAND_RCOD PROGBITS        bf086c14 086df4 000018 00  AX  0   0  4
+  [18] .LPCTOOL_RCODE.3  PROGBITS        bf086c2c 086e0c 0001d8 00  AX  0   0  4
+  [19] .LPCTOOL_RCODE.1  PROGBITS        bf086e04 086fe4 000204 00  AX  0   0  4
+  [20] .MATHTOOL_RCODE.1 PROGBITS        bf087008 0871e8 000064 00  AX  0   0  4
+  [21] .MATHTOOL_RCODE.2 PROGBITS        bf08706c 08724c 000030 00  AX  0   0  4
+  [22] .MATHTOOL_RCODE.3 PROGBITS        bf08709c 08727c 00003c 00  AX  0   0  4
+  [23] .BASOP32_RCODE.4  PROGBITS        bf0870d8 0872b8 000028 00  AX  0   0  4
+  [24] .BASOP32_RCODE.17 PROGBITS        bf087100 0872e0 000030 00  AX  0   0  4
+  [25] .BASOP32_RCODE.12 PROGBITS        bf087130 087310 000020 00  AX  0   0  4
+  [26] .BASOP32_RCODE.21 PROGBITS        bf087150 087330 00001c 00  AX  0   0  4
+  [27] .BASOP32_RCODE.23 PROGBITS        bf08716c 08734c 000088 00  AX  0   0  4
+  [28] .BASOP32_RCODE.24 PROGBITS        bf0871f4 0873d4 000070 00  AX  0   0  4
+  [29] .BASOP32_RCODE.31 PROGBITS        bf087264 087444 000024 00  AX  0   0  4
+  [30] .BASOP32_RCODE.35 PROGBITS        bf087288 087468 000034 00  AX  0   0  4
+  [31] .BASOP32_RCODE.40 PROGBITS        bf0872bc 08749c 000010 00  AX  0   0  4
+  [32] .FEC_LOWBAND_RCOD PROGBITS        bf0872cc 0874ac 000078 00  AX  0   0  4
+  [33] .FEC_LOWBAND_RCOD PROGBITS        bf087344 087524 00006c 00  AX  0   0  4
+  [34] .FEC_LOWBAND_RCOD PROGBITS        bf0873b0 087590 000090 00  AX  0   0  4
+  [35] .FEC_LOWBAND_RCOD PROGBITS        bf087440 087620 0000e0 00  AX  0   0  4
+  [36] .FEC_LOWBAND_RCOD PROGBITS        bf087520 087700 0000e4 00  AX  0   0  4
+  [37] .FEC_LOWBAND_RCOD PROGBITS        bf087604 0877e4 000a2c 00  AX  0   0  4
+  [38] .sram_mdf         PROGBITS        bf088030 088210 001e50 00  AX  0   0  4
+  [39] .sram_preprocess  PROGBITS        bf089e80 08a060 000fb8 00  AX  0   0  4
+  [40] .AEC_RCODE.2      PROGBITS        bf08ae38 08b018 0000bc 00  AX  0   0  4
+  [41] .AEC_RCODE.4      PROGBITS        bf08aef4 08b0d4 000018 00  AX  0   0  4
+  [42] .AEC_RCODE.1      PROGBITS        bf08af0c 08b0ec 000014 00  AX  0   0  4
+  [43] .AEC_RCODE.3      PROGBITS        bf08af20 08b100 000064 00  AX  0   0  4
+  [44] .AGC_CORE_0       PROGBITS        bf08af84 08b164 000024 00  AX  0   0  4
+  [45] .AGC_CORE_1       PROGBITS        bf08afa8 08b188 000028 00  AX  0   0  4
+  [46] .AGC_CORE_3       PROGBITS        bf08afd0 08b1b0 000088 00  AX  0   0  4
+  [47] .AGC_CORE_4       PROGBITS        bf08b058 08b238 00010c 00  AX  0   0  4
+  [48] .AGC_BANK_1       PROGBITS        bf08b164 08b344 0003f8 00  AX  0   0  4
+  [49] .AGC_BANK_3       PROGBITS        bf08b55c 08b73c 000058 00  AX  0   0  4
+  [50] .AGC_BANK_2       PROGBITS        bf08b5b4 08b794 000088 00  AX  0   0  4
+  [51] .AGC_CORE_6       PROGBITS        bf08b63c 08b81c 000254 00  AX  0   0  4
+  [52] .AGC_CORE_5       PROGBITS        bf08b890 08ba70 000738 00  AX  0   0  4
+  [53] .AGC_BANK_4       PROGBITS        bf08bfc8 08c1a8 000098 00  AX  0   0  4
+  [54] .AGC_CORE_7       PROGBITS        bf08c060 08c240 000038 00  AX  0   0  4
+  [55] .AGC_BANK_5       PROGBITS        bf08c098 08c278 000104 00  AX  0   0  4
+  [56] .AGC_BANK_8       PROGBITS        bf08c19c 08c37c 000138 00  AX  0   0  4
+  [57] .AGC_CORE_8       PROGBITS        bf08c2d4 08c4b4 00020c 00  AX  0   0  4
+  [58] .AGC_BANK_10      PROGBITS        bf08c4e0 08c6c0 000254 00  AX  0   0  4
+  [59] .AGC_CORE_9       PROGBITS        bf08c734 08c914 000018 00  AX  0   0  4
+  [60] .AGC_CORE_10      PROGBITS        bf08c74c 08c92c 000008 00  AX  0   0  4
+  [61] .AGC_CORE_11      PROGBITS        bf08c754 08c934 00019c 00  AX  0   0  4
+  [62] .AEC_RCODE.5      PROGBITS        bf08c8f0 08cad0 0000fc 00  AX  0   0  4
+  [63] .AEC_RCODE.6      PROGBITS        bf08c9ec 08cbcc 000084 00  AX  0   0  4
+  [64] .rom_imp_ram_func PROGBITS        bf08ca70 08cc50 000030 00  AX  0   0  4
+  [65] .rom_imp_nor_func PROGBITS        bf08caa0 08cc80 0000b0 00  AX  0   0  4
+  [66] devconfig         PROGBITS        bf08cb50 08cd30 000270 00   A  0   0  4
+  [67] initshell         PROGBITS        bf08cdc0 08cfa0 000048 00   A  0   0  4
+  [68] rodata            PROGBITS        bf08ce10 08cff0 02b608 00   A  0   0 16
+  [69] .overlay.data.plc PROGBITS        bfc249f0 0bbfe8 000180 00  WA  0   0  4
+  [70] .overlay.bss.plc  NOBITS          bfc322b0 0bc168 002840 00  WA  0   0  4
+  [71] .overlay.bss.usb_ NOBITS          bfc322b0 0bc170 004000 00  WA  0   0  4
+  [72] .overlay.bss.fmtc NOBITS          bfc322b0 0bc168 000400 00  WA  0   0  4
+  [73] .overlay.bss.admp NOBITS          bfc322b0 0bc168 00877c 00  WA  0   0  4
+  [74] .bss_rom_dependen NOBITS          bfc20000 0bc168 000f00 00  WA  0   0  8
+  [75] datas             PROGBITS        bfc21000 0b85f8 003338 00 WAX  0   0  8
+  [76] initlevel         PROGBITS        bfc24338 0bb930 000270 00   A  0   0  4
+  [77] _k_mem_slab_area  PROGBITS        bfc245a8 0bbba0 000040 00  WA  0   0  4
+  [78] _k_sem_area       PROGBITS        bfc245e8 0bbbe0 000038 00  WA  0   0  4
+  [79] _k_mutex_area     PROGBITS        bfc24620 0bbc18 000210 00  WA  0   0  4
+  [80] _k_stack_area     PROGBITS        bfc24830 0bbe28 000018 00  WA  0   0  4
+  [81] _k_mbox_area      PROGBITS        bfc24848 0bbe40 000014 00  WA  0   0  4
+  [82] _k_work_area      PROGBITS        bfc2485c 0bbe54 00000c 00  WA  0   0  4
+  [83] _net_buf_pool_are PROGBITS        bfc24868 0bbe60 000180 00  WA  0   0  4
+  [84] usb_descriptor    PROGBITS        bfc249e8 0bbfe0 000004 00  WA  0   0  1
+  [85] usb_data          PROGBITS        bfc249ec 0bbfe4 000004 00  WA  0   0  1
+  [86] bss               NOBITS          bfc24b70 0bc170 0041cc 00  WA  0   0  8
+  [87] .bt_bss           NOBITS          bfc28d40 0bc170 001eec 00  WA  0   0  8
+  [88] noinit            NOBITS          bfc2ac30 0bc170 0019e8 00  WA  0   0  8
+  [89] .sys_bss          NOBITS          bfc2c618 0bc170 000f80 00  WA  0   0  8
+  [90] .media_bss        NOBITS          bfc2d5a0 0bc170 004d10 00  WA  0   0 16
+  [91] .codec_stack      NOBITS          bfc61000 0bc168 000800 00  WA  0   0  8
+  [92] .overlay.bss.adpc NOBITS          bfc322b0 0bc168 003300 00  WA  0   0  4
+  [93] .overlay.bss.audi NOBITS          bfc3aa2c 0bc16c 004048 00  WA  0   0 16
+  [94] .cascade.dec_uac_ NOBITS          bfc3ea80 0bc170 000d20 00  WA  0   0 16
+  [95] .btcon_bss        NOBITS          bfc41200 0bc168 003f50 00  WA  0   0  8
+  [96] .bthost_bss       NOBITS          bfc45150 0bc168 0035e0 00  WA  0   0  8
+  [97] .gnu.attributes   GNU_ATTRIBUTES  00000000 0bc168 000010 00      0   0  1
+  [98] .debug_info       MIPS_DWARF      00000000 0bc178 276356 00      0   0  1
+  [99] .debug_abbrev     MIPS_DWARF      00000000 3324ce 04ce28 00      0   0  1
+  [100] .debug_aranges    MIPS_DWARF      00000000 37f2f8 00c258 00      0   0  8
+  [101] .debug_line       MIPS_DWARF      00000000 38b550 0a5a82 00      0   0  1
+  [102] .debug_str        MIPS_DWARF      00000000 430fd2 053007 01  MS  0   0  1
+  [103] .debug_frame      MIPS_DWARF      00000000 483fdc 0250c0 00      0   0  4
+  [104] .debug_loc        MIPS_DWARF      00000000 4a909c 0c9d3a 00      0   0  1
+  [105] .debug_ranges     MIPS_DWARF      00000000 572dd8 000448 00      0   0  8
+  [106] .symtab           SYMTAB          00000000 573220 02c9e0 10     107 6337  4
+  [107] .strtab           STRTAB          00000000 59fc00 042c92 00      0   0  1
+  [108] .shstrtab         STRTAB          00000000 5e2892 000671 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  p (processor specific)
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  LOAD           0x0001e0 0xbf000000 0xbf000000 0xb8418 0xb8418 R E 0x10
+  LOAD           0x0b85f8 0xbfc21000 0xbf0b8418 0x03b70 0x03b70 RWE 0x8
+  LOAD           0x0bc168 0xbfc20000 0xbfc20000 0x00000 0x00f00 RW  0x8
+  LOAD           0x0bc170 0xbfc24b70 0xbfc24b70 0x00000 0x11740 RW  0x10
+  LOAD           0x0bc168 0xbfc322b0 0xbfc362b0 0x00000 0x00400 RW  0x4
+  LOAD           0x0bc168 0xbfc322b0 0xbfc366b0 0x00000 0x03300 RW  0x4
+  LOAD           0x0bc168 0xbfc322b0 0xbfc399b0 0x00000 0x0877c RW  0x4
+  LOAD           0x0bc168 0xbfc41200 0xbfc41200 0x00000 0x03f50 RW  0x8
+  LOAD           0x0bc168 0xbfc322b0 0xbfc4212c 0x00000 0x02840 RW  0x4
+  LOAD           0x0bc168 0xbfc45150 0xbfc45150 0x00000 0x035e0 RW  0x8
+  LOAD           0x0bc16c 0xbfc3aa2c 0xbfc4a8a8 0x00000 0x04048 RW  0x10
+  LOAD           0x0bc170 0xbfc3ea80 0xbfc4e900 0x00000 0x00d20 RW  0x10
+  LOAD           0x0bc168 0xbfc61000 0xbfc61000 0x00000 0x00800 RW  0x8
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     text .module_api_entry .FEC_LOWBAND_RCODE.1 .FEC_LOWBAND_BANK.3 .FEC_LOWBAND_RCODE.9 .FEC_LOWBAND_RCODE.10 .FEC_LOWBAND_RCODE.13 .FEC_LOWBAND_RCODE.17 .FEC_LOWBAND_RCODE.4 .FEC_LOWBAND_RCODE.3 .FEC_LOWBAND_RCODE.18 .FEC_LOWBAND_RCODE.2 .FEC_LOWBAND_RCODE.20 .FEC_LOWBAND_RCODE.5 .FEC_LOWBAND_BANK.4 .FEC_LOWBAND_RCODE.6 .FEC_LOWBAND_RCODE.7 .LPCTOOL_RCODE.3 .LPCTOOL_RCODE.1 .MATHTOOL_RCODE.1 .MATHTOOL_RCODE.2 .MATHTOOL_RCODE.3 .BASOP32_RCODE.4 .BASOP32_RCODE.17 .BASOP32_RCODE.12 .BASOP32_RCODE.21 .BASOP32_RCODE.23 .BASOP32_RCODE.24 .BASOP32_RCODE.31 .BASOP32_RCODE.35 .BASOP32_RCODE.40 .FEC_LOWBAND_RCODE.11 .FEC_LOWBAND_RCODE.21 .FEC_LOWBAND_RCODE.8 .FEC_LOWBAND_RCODE.19 .FEC_LOWBAND_RCODE.16 .FEC_LOWBAND_RCODE.12 .sram_mdf .sram_preprocess .AEC_RCODE.2 .AEC_RCODE.4 .AEC_RCODE.1 .AEC_RCODE.3 .AGC_CORE_0 .AGC_CORE_1 .AGC_CORE_3 .AGC_CORE_4 .AGC_BANK_1 .AGC_BANK_3 .AGC_BANK_2 .AGC_CORE_6 .AGC_CORE_5 .AGC_BANK_4 .AGC_CORE_7 .AGC_BANK_5 .AGC_BANK_8 .AGC_CORE_8 .AGC_BANK_10 .AGC_CORE_9 .AGC_CORE_10 .AGC_CORE_11 .AEC_RCODE.5 .AEC_RCODE.6 .rom_imp_ram_funcs .rom_imp_nor_funcs devconfig initshell rodata 
+   01     .overlay.data.plc datas initlevel _k_mem_slab_area _k_sem_area _k_mutex_area _k_stack_area _k_mbox_area _k_work_area _net_buf_pool_area usb_descriptor usb_data 
+   02     .bss_rom_dependent_ram 
+   03     .overlay.bss.plc .overlay.bss.usb_mass .overlay.bss.fmtchk bss .bt_bss noinit .sys_bss .media_bss .overlay.bss.adpcm 
+   04     .overlay.bss.fmtchk 
+   05     .overlay.bss.plc .overlay.bss.fmtchk .overlay.bss.adpcm 
+   06     .overlay.bss.plc .overlay.bss.usb_mass .overlay.bss.fmtchk .overlay.bss.admp3 .overlay.bss.adpcm 
+   07     .btcon_bss 
+   08     .overlay.bss.plc .overlay.bss.fmtchk 
+   09     .bthost_bss 
+   10     .overlay.bss.audio_pp 
+   11     .cascade.dec_uac_buf 
+   12     .codec_stack 

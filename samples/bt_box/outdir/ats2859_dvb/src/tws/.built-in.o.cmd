@@ -1,0 +1,1 @@
+cmd_src/tws/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o src/tws/built-in.o src/tws/tws_main.o src/tws/tws_event.o src/tws/tws_view.o src/tws/tws_media.o 

@@ -1,0 +1,15 @@
+-nostartfiles -nodefaultlibs -nostdlib -static -EL -Wl,-X -Wl,-N -Wl,--gc-sections -Wl,--build-id=none
+-Wl,-Map=zephyr.map
+-L ./include/generated
+-u _OffsetAbsSyms -u _ConfigAbsSyms
+-e __start
+-Wl,--start-group
+-Wl,--whole-archive
+libapplication.a
+libzephyr.a
+/home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/libota.a /home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/libbt_service.a /home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/libbt_stack.a /home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/libmedia.a
+-Wl,--no-whole-archive
+kernel/lib.a
+./arch/mips/core/offsets/offsets.o
+-Wl,--end-group
+-L /opt/mips-mti-elf/2019.09-01/bin/../lib/gcc/mips-mti-elf/7.4.0/mipsel-r2-mips16-soft-newlib/lib -L/home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips -L/home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/al -L/home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/ext/actions/library/mips/woodpecker -L/home/book/work/release_for_SDK_TAG_ZS2859_1900_20210601/TMC-50_1003/arch/mips/soc/actions/woodpecker  -l_m1_fmt_p  -l_m1_cvs_d  -l_m1_mp3_d  -l_m1_sbc_c  -l_m1_cvs_e  -l_m1_plc_p  -l_m1_spe_p  -l_m1_dae_h_p  -l_m1_mix_p  -l_m1_res_a_p  -l_m1_res_h_p  -lsocoem  -lbtcon_phoenix  -lsocatp  -lgcc

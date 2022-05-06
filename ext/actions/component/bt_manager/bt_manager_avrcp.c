@@ -156,6 +156,8 @@ static u32_t _bt_manager_avrcp_to_music_volume(u32_t avrcp_vol)
 
 	return music_vol;
 }
+
+
 #endif
 void _bt_manager_avrcp_get_volume_callback(void *param, u8_t *volume)
 {

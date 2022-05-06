@@ -118,8 +118,9 @@ typedef struct {
 
 /**gpio 8 9 used by psram */
 #if !defined(CONFIG_SOC_SERIES_WOODPECKERFPGA) //fpga don't care display
+
+/*
 #define BOARD_LED_MAP   \
-    /*led_id , led_pin. led_pwm,  active_level    */\
 	{   0,          24,          5,                  1},	\
 	{   1,          25,          6,                  1},
 
@@ -127,6 +128,12 @@ typedef struct {
     {24,     0xc},  \
     {25,     0xc},
 #endif
+*/
+#define BOARD_LED_MAP   \
+    /*led_id , led_pin. led_pwm,  active_level    */\
+	{   0,          2,          0xff,             1},	
+#endif
+
 
 #ifdef CONFIG_INPUT_DEV_ACTS_IRKEY
 /* irkey protocol:

@@ -32,13 +32,14 @@ void btmusic_bt_event_proc(struct app_msg *msg)
 
 	case BT_CONNECTION_EVENT:
 	{
-		btmusic_view_show_connected();
+		btmusic_view_show_connected();		//连接上后灯的显示
 		break;
 	}
 
 	case BT_DISCONNECTION_EVENT:
 	{
-		btmusic_view_show_disconnected();
+		btmusic_view_show_disconnected();	//断开后灯的显示
+		
 		break;
 	}
 	case BT_TWS_CONNECTION_EVENT:
@@ -118,7 +119,7 @@ void btmusic_bt_event_proc(struct app_msg *msg)
 
 	case BT_AVRCP_TRACK_CHANGED_EVENT:
 	{
-		bt_manager_avrcp_get_id3_info();
+		//bt_manager_avrcp_get_id3_info();		//关闭蓝牙推歌的名单等
 		break;
 	}
 	
@@ -127,6 +128,16 @@ void btmusic_bt_event_proc(struct app_msg *msg)
 		audio_system_set_stream_volume(AUDIO_STREAM_MUSIC, msg->value);
 		if (btmusic && btmusic->player)
 			media_player_set_volume(btmusic->player, msg->value, msg->value);
+
+		//notify dsp of volume
+		{
+			extern void system_app_uart_tx(u8_t *buf, size_t len);
+			u8_t bt_vol = (u8_t)msg->value;
+
+			//encap
+			bt_vol += 0x10;
+			system_app_uart_tx(&bt_vol, 1);
+		}	
 		break;
 	}
 
@@ -221,6 +232,11 @@ void btmusic_input_event_proc(struct app_msg *msg)
 		if (btmusic->playing) {
 			bt_manager_avrcp_fast_backward(false);
 		}
+		break;
+	}
+	case MSG_BT_PLAY_VOL_SET:
+	{
+		system_volume_set(AUDIO_STREAM_MUSIC,msg->value,false);
 		break;
 	}
 	default:

@@ -38,8 +38,8 @@ static int _ota_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 		seg_led_display_string(SLED_NUMBER1, "UpgD", true);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
-		led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
+		//led_manager_set_blink(0, 200, 100, OS_FOREVER, LED_START_STATE_ON, NULL);
+		//led_manager_set_blink(1, 200, 100, OS_FOREVER, LED_START_STATE_OFF, NULL);
 	#endif
 
 		SYS_LOG_INF("CREATE\n");
@@ -49,8 +49,8 @@ static int _ota_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	{
 		SYS_LOG_INF("DELETE\n");
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 	}
@@ -98,11 +98,11 @@ void ota_view_show_upgrade_result(u8_t *string, bool is_faill)
 #endif
 #ifdef CONFIG_LED_MANAGER
 	if (is_faill) {
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	} else {
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	}
 #endif
 }

@@ -20,24 +20,26 @@
 #include "system_app.h"
 
 const ui_key_map_t common_keymap[] = {
-
-	{ KEY_MENU,			KEY_TYPE_SHORT_UP,		1, MSG_SWITCH_APP},
+	{ KEY_TBD,        KEY_TYPE_LONG6S,		1, MSG_DISCONNECTED_BT},
+	{ KEY_TBD,        KEY_TYPE_SHORT_UP |KEY_TYPE_LONG_UP,		1, MSG_WAKE_UP_BT},
+	//{ KEY_MENU,			KEY_TYPE_SHORT_UP,		1, MSG_SWITCH_APP},
 	{ KEY_POWER,        KEY_TYPE_SHORT_UP,		1, MSG_SWITCH_APP},
+	{ KEY_POWER,        KEY_TYPE_SHORT_UP,		1, BTSRV_HFP_DISCONNECTED},
 	{ KEY_POWER,        KEY_TYPE_LONG_DOWN,		1,	MSG_KEY_POWER_OFF},
-	//{ KEY_MENU,         KEY_TYPE_LONG_DOWN,		1,	MSG_BT_PLAY_CLEAR_LIST},
+	{ KEY_MENU,         KEY_TYPE_LONG_DOWN,		1,	MSG_BT_PLAY_CLEAR_LIST},
 	{ KEY_POWER,        KEY_TYPE_DOUBLE_CLICK,	1,	MSG_BT_CALL_LAST_NO},
 #ifdef CONFIG_GMA_APP
-	{ KEY_TBD,			KEY_TYPE_LONG_DOWN,	1,	MSG_GMA_RECORDER_START},
+	//{ KEY_TBD,			KEY_TYPE_LONG_DOWN,	1,	MSG_GMA_RECORDER_START},
 #else
 #ifdef CONFIG_RECORD_SERVICE
-	{ KEY_TBD,			KEY_TYPE_LONG_DOWN,	1,	MSG_RECORDER_START_STOP},
+	//{ KEY_TBD,			KEY_TYPE_LONG_DOWN,	1,	MSG_RECORDER_START_STOP},
 #else
-	{ KEY_TBD,   		KEY_TYPE_LONG_DOWN,		1,	MSG_BT_SIRI_START},
+	//{ KEY_TBD,   		KEY_TYPE_LONG_DOWN,		1,	MSG_BT_SIRI_START},
 #endif
 #endif
 	//{ KEY_TBD,			KEY_TYPE_LONG_DOWN,		1,	MSG_BT_TWS_SWITCH_MODE},
-	{ KEY_TBD,			KEY_TYPE_SHORT_UP,		1,	MSG_BT_PLAY_TWS_PAIR},
-	{ KEY_TBD,			KEY_TYPE_DOUBLE_CLICK,	1,	MSG_ALARM_ENTRY_EXIT},
+	//{ KEY_TBD,			KEY_TYPE_SHORT_UP,		1,	MSG_BT_PLAY_TWS_PAIR},
+	//{ KEY_TBD,			KEY_TYPE_DOUBLE_CLICK,	1,	MSG_ALARM_ENTRY_EXIT},
 #ifdef CONFIG_BT_HID
 	{ KEY_NEXTSONG,     KEY_TYPE_DOUBLE_CLICK,  1,	MSG_BT_HID_START},
 #endif
@@ -69,8 +71,8 @@ void system_app_volume_show(struct app_msg *msg)
 #ifdef CONFIG_LED_MANAGER
 	if (msg->cmd) {
 		led_manager_set_timeout_event_start();
-		led_manager_set_blink(0, 100, 50, OS_FOREVER, LED_START_STATE_ON, NULL);
-		led_manager_set_blink(1, 100, 50, OS_FOREVER, LED_START_STATE_OFF, NULL);
+		//led_manager_set_blink(0, 100, 50, OS_FOREVER, LED_START_STATE_ON, NULL);
+		//led_manager_set_blink(1, 100, 50, OS_FOREVER, LED_START_STATE_OFF, NULL);
 		/*blink 3 times*/
 		led_manager_set_timeout_event(100 * 3, NULL);
 	}
@@ -100,8 +102,8 @@ static void system_app_view_deal(u32_t ui_event)
 		seg_led_display_icon(SLED_PLAY, false);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	#endif
 	break;
 	case UI_EVENT_POWER_OFF:
@@ -128,8 +130,8 @@ static int system_app_view_proc(u8_t view_id, u8_t msg_id, u32_t ui_event)
 		seg_led_display_string(SLED_NUMBER1, "----", true);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	#endif
 		system_app_view_deal(UI_EVENT_POWER_ON);
 		break;
@@ -145,8 +147,8 @@ static int system_app_view_proc(u8_t view_id, u8_t msg_id, u32_t ui_event)
 		seg_led_manager_clear_screen(LED_CLEAR_ALL);
 	#endif
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 	default:

@@ -192,6 +192,9 @@ static const struct acts_pin_config board_pin_config[] = {
 	{21, 0x5 | GPIO_CTL_SMIT | GPIO_CTL_PADDRV_LEVEL(3)}, /* SPI1_SCLK */
 	{22, 0x5 | GPIO_CTL_SMIT | GPIO_CTL_PADDRV_LEVEL(3)}, /* SPI1_MOSI */
 #endif
+
+	{ 2,GPIO_CTL_MFP_GPIO|GPIO_CTL_SMIT|GPIO_CTL_PADDRV_LEVEL(3)|GPIO_CTL_PULLDOWN|GPIO_CTL_GPIO_OUTEN},
+
 };
 
 static const audio_input_map_t board_audio_input_map[] =  {

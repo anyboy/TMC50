@@ -38,12 +38,22 @@ const short voice_da_table[MAX_AUDIO_VOL_LEVEL] = {
 };
 
 /* unit: 0.001 dB */
+/*
 const int voice_pa_table[MAX_AUDIO_VOL_LEVEL] = {
 	-5000, -5000, -5000, -5000, -5000, -5000, -5000, -5000,
 	-5000, -5000, -5000, -5000, -5000, -5000, -5000, -5000,
 	-5000, -5000, -5000, -5000, -5000, -5000, -5000, -5000,
 	-5000, -5000, -5000, -5000, -5000, -5000, -5000, -5000
+};*/
+
+
+const int voice_pa_table[MAX_AUDIO_VOL_LEVEL] = {
+	0, 0, 0, 0, 0, 0,  0, 0,
+	0, 0, 0, 0, 0, 0,  0, 0,
+	0, 0, 0, 0, 0, 0,  0, 0,
+	0, 0, 0, 0, 0, 0,  0, 0
 };
+
 
 /* unit: 0.1 dB */
 const short music_da_table[MAX_AUDIO_VOL_LEVEL] = {
@@ -163,7 +173,7 @@ void system_audio_policy_init(void)
 #ifdef CONFIG_OUTPUT_RESAMPLE
 	if ((system_audio_policy.audio_out_channel & AUDIO_CHANNEL_I2STX) == AUDIO_CHANNEL_I2STX
 	|| (system_audio_policy.audio_out_channel & AUDIO_CHANNEL_SPDIFTX) == AUDIO_CHANNEL_SPDIFTX) {
-		audio_system_set_output_sample_rate(48);
+		audio_system_set_output_sample_rate(48);		//对时钟从采样
 #ifdef CONFIG_DVFS_DYNAMIC_LEVEL
 		dvfs_set_level(DVFS_LEVEL_HIGH_PERFORMANCE, "media");
 		SYS_LOG_INF("dvfs level %d\n", DVFS_LEVEL_HIGH_PERFORMANCE);

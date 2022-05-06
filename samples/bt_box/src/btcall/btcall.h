@@ -64,6 +64,8 @@ enum
 	MSG_BT_ACCEPT_CALL,	
 
 	MSG_BT_REJECT_CALL,
+
+	MSG_BT_CALL_VOL_SET,
 };
 
 struct btcall_app_t {

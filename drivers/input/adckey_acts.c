@@ -222,7 +222,7 @@ static const struct acts_adckey_config adckey_acts_cdata = {
 	.adc_name = CONFIG_INPUT_DEV_ACTS_ADCKEY_ADC_NAME,
 	.adc_chan = CONFIG_INPUT_DEV_ACTS_ADCKEY_ADC_CHAN,
 
-	.poll_interval_ms = 20,
+	.poll_interval_ms = 10,//20,
 	.sample_filter_dep = 3,
 
 	.key_cnt = ARRAY_SIZE(adckey_acts_keymaps),

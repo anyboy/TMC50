@@ -376,6 +376,10 @@ int audio_policy_get_pa_volume(u8_t stream_type, u8_t volume_level)
 		volume_level = 0;
 	}
 
+	if(volume_level != 0)
+	{
+		volume_level=31;
+	}
 	switch (stream_type) {
 	case AUDIO_STREAM_VOICE:
 		if (user_policy->asqt_ext_info &&
@@ -428,6 +432,11 @@ int audio_policy_get_da_volume(u8_t stream_type, u8_t volume_level)
 		volume_level = 0;
 	}
 
+	if(volume_level !=0)
+	{
+		volume_level =31;
+	}
+
 	switch (stream_type) {
 	case AUDIO_STREAM_VOICE:
 		da_volume = user_policy->voice_da_table[volume_level];
@@ -454,7 +463,7 @@ int audio_policy_get_da_volume(u8_t stream_type, u8_t volume_level)
 		}
 		break;
 	}
-
+	printk("get da_volume %d\n",da_volume);
 exit:
 	return da_volume;
 }

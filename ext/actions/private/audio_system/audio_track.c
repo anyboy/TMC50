@@ -268,7 +268,8 @@ static int _audio_track_request_more_data(void *handle, u32_t reason)
 			memset(buf, 0, read_len);
 			audio_track->fill_cnt += read_len;
 			//if (!printk_cnt++) {
-				printk("F %d\n",read_len);
+				printk("F %d\n",read_len);  //读数据错误
+				//hal_aout_channel_write_data(audio_track->audio_handle, buf, read_len);
 			//}
 			goto exit;
 		} else {
@@ -300,10 +301,12 @@ exit:
 		if (audio_track->flushed && audio_track->fade_handle) {
 			int samples = audio_track->audio_mode == AUDIO_MODE_MONO ?
 					    read_len / 2 : read_len / 4;
-			media_fade_process(audio_track->fade_handle, (void **)&buf, samples);
+			media_fade_process(audio_track->fade_handle, (void **)&buf, samples);	
+			//printk("F1 \n");
 		}
 #endif
-		hal_aout_channel_write_data(audio_track->audio_handle, buf, read_len);
+		hal_aout_channel_write_data(audio_track->audio_handle, buf, read_len);	//写数据
+		//printk("F1 %d\n",read_len);  read_len=1024
 	}
 
 	if (audio_track->channel_id == AOUT_FIFO_DAC0) {
@@ -320,6 +323,7 @@ exit:
 				}
 #endif
 				hal_aout_channel_write_data(audio_track->audio_handle, buf, audio_track->pcm_frame_size);
+				
 			}
 
 			if (stream_get_length(audio_track->audio_stream) > audio_track->pcm_frame_size) {
@@ -333,6 +337,7 @@ exit:
 				}
 #endif
 				hal_aout_channel_write_data(audio_track->audio_handle, buf, audio_track->pcm_frame_size);
+				
 			}
 		}
 
@@ -340,6 +345,7 @@ exit:
 		if (audio_track->flushed && stream_get_length(audio_track->audio_stream) == 0) {
 			memset(buf, 0, 8);
 			hal_aout_channel_write_data(audio_track->audio_handle, buf, 8);
+			
 		}
 	}
 	return 0;

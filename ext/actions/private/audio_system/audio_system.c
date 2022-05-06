@@ -351,6 +351,18 @@ int audio_system_set_stream_volume(int stream_type, int volume)
 		ret = MIN_VOLUME_VALUE;
 		volume = 0;
 	}
+/*
+	//notify dsp of volume
+	{
+		extern void system_app_uart_tx(u8_t *buf, size_t len);
+		u8_t bt_vol = (u8_t)volume;
+
+		//encap
+		bt_vol += 0x10;
+		system_app_uart_tx(&bt_vol, 1);
+	}
+*/
+
 	os_mutex_lock(&audio_system->audio_system_mutex, OS_FOREVER);
 	for (int i = 0; i < MAX_AUDIO_TRACK_NUM; i++) {
 		audio_track = audio_system->audio_track_pool[i];
@@ -358,7 +370,7 @@ int audio_system_set_stream_volume(int stream_type, int volume)
 					 (audio_track->stream_type == stream_type
 						|| stream_type == AUDIO_STREAM_DEFAULT)) {
 			printk("%s st_type:%d vol:%d\n", __FUNCTION__, stream_type, volume);
-			audio_track_set_volume(audio_track, volume);
+			//audio_track_set_volume(audio_track, volume);
 		} else if (audio_track && bt_manager_tws_get_dev_role() == BTSRV_TWS_SLAVE) {
 				int pa_volume = audio_policy_get_pa_volume(stream_type, volume);
 				hal_aout_channel_set_pa_vol_level(audio_track->audio_handle, pa_volume);

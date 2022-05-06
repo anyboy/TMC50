@@ -178,7 +178,7 @@ static int _sys_standby_enter_s1(void)
 #endif
 
 #ifdef CONFIG_LED_MANAGER
-	led_manager_sleep();
+	//led_manager_sleep();
 #endif
 
 	/**set ble state stanyby*/

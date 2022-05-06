@@ -1,0 +1,1 @@
+cmd_drivers/watchdog/built-in.o :=  /opt/mips-mti-elf/2019.09-01/bin/mips-mti-elf-ld -nostartfiles -nodefaultlibs -nostdlib -static -EL   -r -o drivers/watchdog/built-in.o drivers/watchdog/wdg_acts.o 

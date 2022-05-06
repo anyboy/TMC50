@@ -9,3 +9,4 @@ obj-y += system_tts_policy.o
 obj-y += system_event_map.o
 obj-y += system_fcc_entry.o
 obj-y += system_app_uart.o
+obj-y += interactive.o

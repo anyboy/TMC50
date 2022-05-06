@@ -36,8 +36,8 @@ static int _usound_view_proc(u8_t view_id, u8_t msg_id, u32_t msg_data)
 	{
 		SYS_LOG_INF("DELETE\n");
 	#ifdef CONFIG_LED_MANAGER
-		led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
+		//led_manager_set_display(0, LED_OFF, OS_FOREVER, NULL);
+		//led_manager_set_display(1, LED_OFF, OS_FOREVER, NULL);
 	#endif
 		break;
 	}
@@ -119,8 +119,8 @@ void usound_show_play_status(bool status)
 		led_manager_set_breath(0, NULL, OS_FOREVER, NULL);
 		led_manager_set_breath(1, NULL, OS_FOREVER, NULL);
 	} else {
-		led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-		led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+		// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 	}
 #endif
 }

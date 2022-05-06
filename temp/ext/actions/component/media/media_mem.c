@@ -125,7 +125,7 @@ static const struct media_memory_block media_memory_config[] = {
 		.mem_cell = {
 			{.mem_type = OUTPUT_DECODER,  .mem_base = (u32_t)&btmusic_pcm_bss[0x0000], .mem_size = 0x800,},
 			{.mem_type = OUTPUT_PLAYBACK, .mem_base = (u32_t)&btmusic_pcm_bss[0x0800], .mem_size = 0x800,},
-			{.mem_type = OUTPUT_PCM,      .mem_base = (u32_t)&btmusic_pcm_bss[0x1000], .mem_size = 0x800,},
+			{.mem_type = OUTPUT_PCM,      .mem_base = (u32_t)&btmusic_pcm_bss[0x1000], .mem_size = 0xa00,},
 			{.mem_type = DECODER_GLOBAL_DATA, .mem_base = (u32_t)&sbc_dec_global_bss[0], .mem_size = sizeof(sbc_dec_global_bss),},
 
 		#ifdef CONFIG_TWS_MONO_MODE

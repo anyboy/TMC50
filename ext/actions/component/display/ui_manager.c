@@ -23,6 +23,9 @@
 #include "framebuffer.h"
 #include "ui_manager.h"
 
+//#include "interactive.h"
+extern int bt_connect_flag;   // 0=normal   1=connect   2=disconnect 
+
 #ifdef CONFIG_SEG_LED_MANAGER
 #include <seg_led_manager.h>
 #endif
@@ -379,7 +382,8 @@ int ui_manager_init(void)
 #ifdef CONFIG_SEG_LED_MANAGER
 	seg_led_manager_init();
 #endif
-
+	////led_manager_set_blink(0, 500, 500, OS_MINUTES(1), 1, NULL);
+	bt_connect_flag =2;
 	return 0;
 }
 

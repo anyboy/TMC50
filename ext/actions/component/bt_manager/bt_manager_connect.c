@@ -35,6 +35,8 @@
 #define BT_PROFILE_RECONNECT_TRY		3
 #define BT_PROFILE_RECONNECT_INTERVAL	3000
 
+//extern struct bt_manager_info_t bt_mgr_info;
+
 void bt_manager_startup_reconnect(void)
 {
 	u8_t phone_num, master_max_index;
@@ -276,3 +278,5 @@ int bt_manager_write_ori_linkkey(bd_address_t *addr, u8_t *link_key)
 {
 	return btif_br_write_ori_linkkey(addr, link_key);
 }
+
+

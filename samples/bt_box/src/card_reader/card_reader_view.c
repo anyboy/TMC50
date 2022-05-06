@@ -57,8 +57,8 @@ void card_reader_view_init(void)
 #endif
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
-	led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(0, LED_ON, OS_FOREVER, NULL);
+	// led_manager_set_display(1, LED_ON, OS_FOREVER, NULL);
 #endif
 
 	SYS_LOG_INF("ok\n");
@@ -77,8 +77,8 @@ void card_reader_show_storage_working(void)
 	seg_led_display_set_flash(FLASH_ITEM(SLED_SD), 400, FLASH_FOREVER, NULL);
 #endif
 #ifdef CONFIG_LED_MANAGER
-	led_manager_set_blink(0, 200, 100, 500, LED_START_STATE_ON, NULL);
-	led_manager_set_blink(1, 200, 100, 500, LED_START_STATE_OFF, NULL);
+	//led_manager_set_blink(0, 200, 100, 500, LED_START_STATE_ON, NULL);
+	//led_manager_set_blink(1, 200, 100, 500, LED_START_STATE_OFF, NULL);
 #endif
 }
 
